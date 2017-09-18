@@ -26,5 +26,6 @@ public class BookController {
             System.out.println(book.getTitle());
         }
         return "hello";
+
     }
 }
