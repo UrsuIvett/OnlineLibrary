@@ -8,8 +8,8 @@ public class Book {
     private String publishingHouse;
     private Type type;
     private Language language;
-    private int noOfPages;
-    private String ISBN;
+    private int nrPages;
+    private String isbn;
 
     public Book(String author, String publishingHouse) {
         this.author = author;
@@ -48,19 +48,19 @@ public class Book {
         this.language = language;
     }
 
-    public int getNoOfPages() {
-        return noOfPages;
+    public int getNrPages() {
+        return nrPages;
     }
 
-    public void setNoOfPages(int noOfPages) {
-        this.noOfPages = noOfPages;
+    public void setNrPages(int noOfPages) {
+        this.nrPages = nrPages;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
-    public void setISBN(String ISBN) {
-        this.ISBN = ISBN;
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 }
