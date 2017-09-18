@@ -1,10 +1,11 @@
 package ro.sci.onlinelibrary.repository;
 
-import java.util.List;
-
 /**
- * Created by Ivett on 17-Sep-17.
+ * Created by iulia on 9/15/2017.
  */
+
 public interface Repository<T> {
-    List<T> getAll();
+        void add(T t);
+        void delete(T t);
+        void update(T t);
 }
