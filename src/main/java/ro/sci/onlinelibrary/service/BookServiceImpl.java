@@ -1,8 +1,9 @@
 package ro.sci.onlinelibrary.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.repository.BookRepository;
-import ro.sci.onlinelibrary.repository.BookRepositoryImpl;
 import ro.sci.onlinelibrary.repository.Repository;
 
 import java.util.ArrayList;
@@ -11,16 +12,15 @@ import java.util.List;
 /**
  * Created by iulia on 9/15/2017.
  */
+@Service
 public class BookServiceImpl implements BookService<Book> {
 
-    private BookRepository<Book> bookRepository;
+    @Autowired
+    private BookRepository bookRepository;
 
-    public BookServiceImpl(BookRepositoryImpl bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
-    public List findAll(Book books) {
-        return null;
+    public List<Book> findAll() {
+        return bookRepository.getAll();
     }
 
     public List findBookByAuthor(String author) {
