@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Get all books</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<table>
+    <th:block block th:each="book : $(books)">
+        <tr>
+            <td th:text="${book.id}">...</td>
+            <td th:text="${book.title}">...</td>
+            <td th:text="${book.author}">...</td>
+            <td th:text="${book.publishinghouse}">...</td>
+            <td th:text="${book.booktype}">...</td>
+            <td th:text="${book.booklanguage}">...</td>
+            <td th:text="${book.nrpages}">...</td>
+            <td th:text="${book.isbn}">...</td>
+        </tr>
+    </th:block>
+
+</table>
+</body>
+</html>

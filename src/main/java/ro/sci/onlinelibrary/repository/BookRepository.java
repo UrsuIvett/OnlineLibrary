@@ -14,6 +14,7 @@ public interface BookRepository extends Repository<Book> {
     @Select("SELECT * FROM books")
     List<Book> getAll();
 
+    @Select("SELECT * FROM books")
     List<Book> getBookByAuthor (String author);
 
     List<Book> getBookByPublishingHouse (String publishingHouse);
