@@ -32,7 +32,6 @@ public class BookController {
 
     }*/
 
-
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     public ModelAndView getBooks() {
         List<Book> books = bookService.findAll();
