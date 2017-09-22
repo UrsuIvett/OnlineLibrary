@@ -29,7 +29,6 @@ public class BookController {
             System.out.println(book.getTitle());
         }
         return "hello";
-
     }*/
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
