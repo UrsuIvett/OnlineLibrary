@@ -15,6 +15,7 @@ public interface CustomerService <T extends Customer> {
 
     List<T> findCustomerByFullName(String fullName);
 
+
     List<T> findCustomerByEmail(String email);
 
 }
