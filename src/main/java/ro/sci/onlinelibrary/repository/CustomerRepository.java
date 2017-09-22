@@ -21,3 +21,4 @@ public interface CustomerRepository<T extends Customer> extends Repository<T> {
     void update (T t);
 
 }
+

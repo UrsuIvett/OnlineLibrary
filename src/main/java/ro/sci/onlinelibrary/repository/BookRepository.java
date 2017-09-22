@@ -1,6 +1,7 @@
 package ro.sci.onlinelibrary.repository;
 
 import ro.sci.onlinelibrary.model.book.Book;
+import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -8,18 +9,21 @@ import java.util.List;
  * Created by iulia on 9/15/2017.
  */
 
-public interface BookRepository<T extends Book> extends Repository<T> {
-    List<T> getAll();
+public interface BookRepository extends Repository<Book> {
 
-    List<T> getBookByAuthor (String author);
+    @Select("SELECT * FROM books")
+    List<Book> getAll();
 
-    List<T> getBookByPublishingHouse (String publishingHouse);
+    @Select("SELECT * FROM books")
+    List<Book> getBookByAuthor (String author);
 
-    List<T> getBookByLanguage (String language);
+    List<Book> getBookByPublishingHouse (String publishingHouse);
 
-    void add (T t);
+    List<Book> getBookByLanguage (String language);
 
-    void delete (T t);
+    void add (Book book);
 
-    void update (T t);
+    void delete (Book book);
+
+    void update (Book book);
 }

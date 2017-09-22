@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface BookService<T extends Book> {
 
-    List<T> findAll ( T books);
+    List<T> findAll ();
 
     List<T> findBookByAuthor (String author);
 
