@@ -4,16 +4,31 @@ package ro.sci.onlinelibrary.model.book;
  * Created by Ivett on 14-Sep-17.
  */
 public class Book {
+    private int id;
+    private String title;
     private String author;
     private String publishingHouse;
-    private Type type;
-    private Language language;
+    private BookType bookType;
+    private BookLanguage bookLanguage;
     private int nrPages;
     private String isbn;
 
-    public Book(String author, String publishingHouse) {
-        this.author = author;
-        this.publishingHouse = publishingHouse;
+    public Book(){}
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getAuthor() {
@@ -32,20 +47,20 @@ public class Book {
         this.publishingHouse = publishingHouse;
     }
 
-    public Type getType() {
-        return type;
+    public BookType getBookType() {
+        return bookType;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setBookType(BookType bookType) {
+        this.bookType = bookType;
     }
 
-    public Language getLanguage() {
-        return language;
+    public BookLanguage getBookLanguage() {
+        return bookLanguage;
     }
 
-    public void setLanguage(Language language) {
-        this.language = language;
+    public void setBookLanguage(BookLanguage bookLanguage) {
+        this.bookLanguage = bookLanguage;
     }
 
     public int getNrPages() {
