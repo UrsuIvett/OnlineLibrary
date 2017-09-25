@@ -1,4 +1,4 @@
-package ro.sci.onlinelibrary.model.customer;
+package ro.sci.onlinelibrary.model.user;
 
 /**
  * Created by iulia on 9/15/2017.
