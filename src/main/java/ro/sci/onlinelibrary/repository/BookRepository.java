@@ -9,12 +9,13 @@ import java.util.List;
  * Created by iulia on 9/15/2017.
  */
 
+
 public interface BookRepository extends Repository<Book> {
 
     @Select("SELECT * FROM books")
     List<Book> getAll();
 
-    @Select("SELECT * FROM books")
+    @Select("SELECT * FROM books where author = ?")
     List<Book> getBookByAuthor (String author);
 
     List<Book> getBookByPublishingHouse (String publishingHouse);

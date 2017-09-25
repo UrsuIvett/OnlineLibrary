@@ -15,11 +15,6 @@ public class Book {
 
     public Book(){}
 
-    public Book(String author, String publishingHouse) {
-        this.author = author;
-        this.publishingHouse = publishingHouse;
-    }
-
     public int getId() {
         return id;
     }
