@@ -14,8 +14,6 @@ import java.util.List;
 @RestController
 public class BookController {
 
-    // private List<Book> books  = new ArrayList<Book>();
-
     @Autowired
     private BookService bookService;
 
@@ -23,10 +21,10 @@ public class BookController {
     @ResponseBody
     public ModelAndView getBooks() {
         List<Book> books = bookService.findAll();
-        return new ModelAndView("categoriesView", "books", books);
+        return new ModelAndView("bookView", "books", books);
     }
 
-//    @RequestMapping(value = "/books/Search", method = RequestMethod.GET)
+//    @RequestMapping(value = "/books/search", method = RequestMethod.GET)
 //    @ResponseBody
 //    public ModelAndView showBooksByTitle(@RequestParam(value = "search", required = false, defaultValue = "") String titleSearch) {
 //        List books = bookService.findBookByTitle(titleSearch);
