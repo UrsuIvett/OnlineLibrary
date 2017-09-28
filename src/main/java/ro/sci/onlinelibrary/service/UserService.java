@@ -1,13 +1,13 @@
 package ro.sci.onlinelibrary.service;
 
-import ro.sci.onlinelibrary.model.customer.Customer;
+import ro.sci.onlinelibrary.model.customer.User;
 
 import java.util.List;
 
 /**
  * Created by iulia on 9/15/2017.
  */
-public interface CustomerService <T extends Customer> {
+public interface UserService<T extends User> {
 
     List<T> findAll (T customers);
 

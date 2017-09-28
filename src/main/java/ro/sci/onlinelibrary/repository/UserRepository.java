@@ -1,13 +1,13 @@
 package ro.sci.onlinelibrary.repository;
 
-import ro.sci.onlinelibrary.model.customer.Customer;
+import ro.sci.onlinelibrary.model.customer.User;
 
 import java.util.List;
 
 /**
  * Created by iulia on 9/15/2017.
  */
-public interface CustomerRepository<T extends Customer> extends Repository<T> {
+public interface UserRepository<T extends User> extends Repository<T> {
     List<T> getAll();
 
     List<T> getCustomersByLastName();

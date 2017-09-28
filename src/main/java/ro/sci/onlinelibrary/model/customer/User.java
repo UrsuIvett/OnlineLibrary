@@ -3,14 +3,14 @@ package ro.sci.onlinelibrary.model.customer;
 /**
  * Created by iulia on 9/15/2017.
  */
-public class Customer {
+public class User {
     private int id;
     private String firstName;
     private String lastName;
     private String phone;
     private String email;
 
-    public Customer(String lastName, String email) {
+    public User(String lastName, String email) {
         this.lastName = lastName;
         this.email = email;
     }
