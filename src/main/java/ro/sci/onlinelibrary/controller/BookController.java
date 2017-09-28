@@ -38,9 +38,10 @@ public class BookController {
     }
 
     @RequestMapping(value = "/books/search", method = RequestMethod.GET)
-    public String getBooksByAuthor(@RequestParam(value = "author", required = false) String bookAuthor, Model map) {
-       map.addAttribute("Authors: "+ bookAuthor);
-       return "bookView";
+    public List<Book> getBooksByAuthor(@RequestParam(value = "author", required = false) String bookAuthor, Model map) {
+        List<Book> books = bookService.findBookByAuthor(bookAuthor);
+        map.addAttribute("Authors: "+ bookAuthor);
+       return books;
     }
 
 
