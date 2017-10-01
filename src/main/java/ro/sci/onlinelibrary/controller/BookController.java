@@ -24,23 +24,21 @@ public class BookController {
         return new ModelAndView("bookView", "books", books);
     }
 
-//    @RequestMapping(value = "/books/search", method = RequestMethod.GET)
-//    @ResponseBody
-//    public ModelAndView showBooksByTitle(@RequestParam(value = "search", required = false, defaultValue = "") String titleSearch) {
-//        List books = bookService.findBookByTitle(titleSearch);
-//        return new ModelAndView("titleView", "search", books);
-//
-//    }
+    @RequestMapping(value = "/books/search/title", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView showBooksByTitle(@RequestParam(value = "search", required = false, defaultValue = "") String titleSearch) {
+        List books = bookService.findBookByTitle(titleSearch);
+        return new ModelAndView("titleView", "search", books);
 
-    @RequestMapping(value = "/books/search", method = RequestMethod.GET)
+    }
+
+    @RequestMapping(value = "/books/search/author", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView showBooksByAuthor(@RequestParam(value = "search", required = false, defaultValue = "") String authorSearch) {
         List books = bookService.findBookByAuthor(authorSearch);
         return new ModelAndView("authorView", "search", books);
 
     }
-
-
 
 
 }
