@@ -15,6 +15,7 @@ public interface UserService<T extends Customer> {
 
     List<T> findCustomerByFullName(String fullName);
 
+
     List<T> findCustomerByEmail(String email);
 
 }
