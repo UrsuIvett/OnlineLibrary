@@ -26,6 +26,7 @@ public class BookServiceImpl implements BookService<Book> {
     public List findBookByAuthor(String author) {
         List<Book> foundBooks = new ArrayList<Book>();
 
+<<<<<<< HEAD
        for (Book book : bookRepository.getAll()) {
            if (book.getAuthor().equalsIgnoreCase(author)) {
              foundBooks.add(book);
@@ -33,6 +34,31 @@ public class BookServiceImpl implements BookService<Book> {
       }
     return foundBooks;
 }
+=======
+        for (Book book : bookRepository.getAll()) {
+            if (book.getAuthor().toLowerCase().startsWith(author.toLowerCase())) {
+                foundBooks.add(book);
+            }
+
+        }
+
+        return foundBooks;
+    }
+
+    @Override
+    public List<Book> findBookByTitle(String title) {
+        List<Book> foundBooks = new ArrayList<Book>();
+
+        for (Book book : bookRepository.getAll()) {
+            if (book.getTitle().toLowerCase().startsWith(title.toLowerCase())) {
+                foundBooks.add(book);
+            }
+
+        }
+
+        return foundBooks;
+    }
+>>>>>>> origin/Iulia
 
     public List findBookByPublishingHouse(String publishingHouse) {
         List<Book> foundBooks = new ArrayList<Book>();
