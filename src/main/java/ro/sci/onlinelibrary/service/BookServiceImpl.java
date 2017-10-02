@@ -38,9 +38,7 @@ public class BookServiceImpl implements BookService<Book> {
 
     @Override
     public List<Book> findByField(String field) {
-        String likeField = "%" + field + "%";
-
-
+        String likeField = ("%" + field + "%").toLowerCase();
 
         return bookRepository.getByField(likeField);
     }
