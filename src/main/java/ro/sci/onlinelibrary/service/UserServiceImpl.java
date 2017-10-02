@@ -1,69 +1,58 @@
 package ro.sci.onlinelibrary.service;
 
-import ro.sci.onlinelibrary.model.user.Customer;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import ro.sci.onlinelibrary.model.User;
+import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.repository.UserRepository;
-import ro.sci.onlinelibrary.repository.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by iulia on 9/15/2017.
- */
-public class UserServiceImpl implements UserService<Customer> {
 
-    private UserRepository<Customer> userRepository;
+@Service
+public class UserServiceImpl implements UserService<User> {
 
-    public UserServiceImpl(UserRepository<Customer> userRepository) {
-        this.userRepository = userRepository;
+    @Autowired
+
+    private UserRepository userRepository;
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.getAll();
     }
 
-    public List<Customer> findAll(Customer customers) {
-        return null;
-    }
-
-    public List<Customer> findCustomerByLastName(String lastName) {
-        List<Customer> foundCustomers = new ArrayList<Customer>();
-
-        for (Customer customer : userRepository.getAll()) {
-            if (customer.getLastName().equalsIgnoreCase(lastName)) {
-                foundCustomers.add(customer);
+    @Override
+    public List<User> findUserByLastName(String lastName) {
+        List<User> foundUsers = new ArrayList<User>();
+        for (User user : userRepository.getAll()) {
+            if (user.getLastName().toLowerCase().startsWith(lastName.toLowerCase())) {
+                foundUsers.add(user);
             }
-
         }
-
-        return foundCustomers;
-
+        return foundUsers;
     }
 
-    public List<Customer> findCustomerByFullName(String fullName) {
-
-        List<Customer> foundCustomers = new ArrayList<Customer>();
-
-        for (Customer customer : userRepository.getAll()) {
-//            if (customer.getFullName().equalsIgnoreCase(fullName)) {
-//                foundCustomers.add(customer);
-//            }
-
-        }
-
-        return foundCustomers;
-    }
-
-    public List<Customer> findCustomerByEmail(String email) {
-        List<Customer> foundCustomers = new ArrayList<Customer>();
-
-        for (Customer customer : userRepository.getAll()) {
-            if (customer.getEmail().equalsIgnoreCase(email)) {
-                foundCustomers.add(customer);
+    @Override
+    public List<User> findUserByFullName(String fullName) {
+        List<User> foundUsers = new ArrayList<User>();
+        for (User user : userRepository.getAll()) {
+            if (user.getLastName().toLowerCase().startsWith(fullName.toLowerCase())) {
+                foundUsers.add(user);
             }
-
         }
-
-        return foundCustomers;
+        return foundUsers;
     }
 
-    public Repository<Customer> getUserRepository() {
-        return userRepository;
+    @Override
+    public List<User> findUserByEmail(String email) {
+        List<User> foundUsers = new ArrayList<User>();
+        for (User user : userRepository.getAll()) {
+            if (user.getEmail().toLowerCase().startsWith(email.toLowerCase())) {
+                foundUsers.add(user);
+            }
+        }
+        return foundUsers;
     }
 }
+

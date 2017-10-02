@@ -1,5 +1,8 @@
 package ro.sci.onlinelibrary.repository;
 
+import org.apache.ibatis.annotations.Select;
+import ro.sci.onlinelibrary.model.User;
+import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.model.user.Customer;
 
 import java.util.List;
@@ -7,17 +10,22 @@ import java.util.List;
 /**
  * Created by iulia on 9/15/2017.
  */
-public interface UserRepository<T extends Customer> extends Repository<T> {
-    List<T> getAll();
+public interface UserRepository extends Repository<User> {
 
-    List<T> getCustomersByLastName();
+    @Select("SELECT * FROM users")
+    List<User> getAll();
 
-    List<T> getCustomersByEmail();
+    @Select("SELECT * FROM users WHERE firstName like %firstName%")
+    List<User> getBookByAuthor (String author);
 
-    void add (T t);
+    List<User> getBookByPublishingHouse (String publishingHouse);
 
-    void delete (T t);
+    List<User> getBookByLanguage (String language);
 
-    void update (T t);
+    void add (User user);
 
+    void delete (User user);
+
+    void update (User user);
 }
+
