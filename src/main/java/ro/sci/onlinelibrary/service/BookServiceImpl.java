@@ -24,8 +24,9 @@ public class BookServiceImpl implements BookService<Book> {
     public List findBookByAuthor(String author) {
         List<Book> foundBooks = new ArrayList<Book>();
 
-        for (Book book : bookRepository.getAll()) {
-            if (book.getAuthor().toLowerCase().startsWith(author.toLowerCase())) {
+        List<Book> books = bookRepository.getAll();
+        for (Book book : books) {
+            if (book.getAuthor()!=null && book.getAuthor().toLowerCase().startsWith(author.toLowerCase())) {
                 foundBooks.add(book);
             }
         }
