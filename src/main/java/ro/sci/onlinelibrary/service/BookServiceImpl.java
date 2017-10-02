@@ -40,6 +40,8 @@ public class BookServiceImpl implements BookService<Book> {
     public List<Book> findByField(String field) {
         String likeField = "%" + field + "%";
 
+
+
         return bookRepository.getByField(likeField);
     }
 
