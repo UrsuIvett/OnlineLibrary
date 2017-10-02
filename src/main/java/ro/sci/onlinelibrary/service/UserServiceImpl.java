@@ -1,6 +1,6 @@
 package ro.sci.onlinelibrary.service;
 
-import ro.sci.onlinelibrary.model.user.Customer;
+import ro.sci.onlinelibrary.model.customer.User;
 import ro.sci.onlinelibrary.repository.UserRepository;
 import ro.sci.onlinelibrary.repository.Repository;
 
@@ -10,22 +10,22 @@ import java.util.List;
 /**
  * Created by iulia on 9/15/2017.
  */
-public class UserServiceImpl implements UserService<Customer> {
+public class UserServiceImpl implements UserService<User> {
 
-    private UserRepository<Customer> userRepository;
+    private UserRepository<User> customerRepository;
 
-    public UserServiceImpl(UserRepository<Customer> userRepository) {
-        this.userRepository = userRepository;
+    public UserServiceImpl(UserRepository<User> customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
-    public List<Customer> findAll(Customer customers) {
+    public List<User> findAll(User customers) {
         return null;
     }
 
-    public List<Customer> findCustomerByLastName(String lastName) {
-        List<Customer> foundCustomers = new ArrayList<Customer>();
+    public List<User> findCustomerByLastName(String lastName) {
+        List<User> foundCustomers = new ArrayList<User>();
 
-        for (Customer customer : userRepository.getAll()) {
+        for (User customer : customerRepository.getAll()) {
             if (customer.getLastName().equalsIgnoreCase(lastName)) {
                 foundCustomers.add(customer);
             }
@@ -36,11 +36,11 @@ public class UserServiceImpl implements UserService<Customer> {
 
     }
 
-    public List<Customer> findCustomerByFullName(String fullName) {
+    public List<User> findCustomerByFullName(String fullName) {
 
-        List<Customer> foundCustomers = new ArrayList<Customer>();
+        List<User> foundCustomers = new ArrayList<User>();
 
-        for (Customer customer : userRepository.getAll()) {
+        for (User customer : customerRepository.getAll()) {
 //            if (customer.getFullName().equalsIgnoreCase(fullName)) {
 //                foundCustomers.add(customer);
 //            }
@@ -50,10 +50,10 @@ public class UserServiceImpl implements UserService<Customer> {
         return foundCustomers;
     }
 
-    public List<Customer> findCustomerByEmail(String email) {
-        List<Customer> foundCustomers = new ArrayList<Customer>();
+    public List<User> findCustomerByEmail(String email) {
+        List<User> foundCustomers = new ArrayList<User>();
 
-        for (Customer customer : userRepository.getAll()) {
+        for (User customer : customerRepository.getAll()) {
             if (customer.getEmail().equalsIgnoreCase(email)) {
                 foundCustomers.add(customer);
             }
@@ -63,7 +63,7 @@ public class UserServiceImpl implements UserService<Customer> {
         return foundCustomers;
     }
 
-    public Repository<Customer> getUserRepository() {
-        return userRepository;
+    public Repository<User> getCustomerRepository() {
+        return customerRepository;
     }
 }
