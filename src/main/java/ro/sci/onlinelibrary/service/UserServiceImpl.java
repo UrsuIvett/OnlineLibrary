@@ -1,6 +1,6 @@
 package ro.sci.onlinelibrary.service;
 
-import ro.sci.onlinelibrary.model.customer.User;
+import ro.sci.onlinelibrary.model.user.User;
 import ro.sci.onlinelibrary.repository.UserRepository;
 import ro.sci.onlinelibrary.repository.Repository;
 
@@ -41,8 +41,8 @@ public class UserServiceImpl implements UserService<User> {
         List<User> foundCustomers = new ArrayList<User>();
 
         for (User customer : customerRepository.getAll()) {
-//            if (customer.getFullName().equalsIgnoreCase(fullName)) {
-//                foundCustomers.add(customer);
+//            if (user.getFullName().equalsIgnoreCase(fullName)) {
+//                foundCustomers.add(user);
 //            }
 
         }

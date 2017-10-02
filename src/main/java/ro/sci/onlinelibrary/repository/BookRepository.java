@@ -1,5 +1,6 @@
 package ro.sci.onlinelibrary.repository;
 
+import org.apache.ibatis.annotations.Param;
 import ro.sci.onlinelibrary.model.book.Book;
 import org.apache.ibatis.annotations.Select;
 
@@ -26,4 +27,7 @@ public interface BookRepository extends Repository<Book> {
     void delete (Book book);
 
     void update (Book book);
+
+    @Select("SELECT * FROM books WHERE author LIKE #{field} or title LIKE #{field}")
+    List<Book> getByField(@Param("field") String field);
 }
