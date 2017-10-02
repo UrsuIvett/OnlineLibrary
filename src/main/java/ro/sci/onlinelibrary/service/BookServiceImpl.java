@@ -20,7 +20,7 @@ public class BookServiceImpl implements BookService<Book> {
         return bookRepository.getAll();
     }
 
-    //@Override
+    @Override
     public List findBookByAuthor(String author) {
         List<Book> foundBooks = new ArrayList<Book>();
 
@@ -32,7 +32,7 @@ public class BookServiceImpl implements BookService<Book> {
         return foundBooks;
     }
 
-    ///@Override
+    @Override
     public List<Book> findBookByTitle(String title) {
         List<Book> foundBooks = new ArrayList<Book>();
         for (Book book : bookRepository.getAll()) {
@@ -67,7 +67,7 @@ public class BookServiceImpl implements BookService<Book> {
         return foundBooks;
     }
 
-//    public Repository<Book> getBookRepository() {
-//        return bookRepository;
-//    }
+  public Repository<Book> getBookRepository() {
+    return bookRepository;
+   }
 }
