@@ -34,15 +34,11 @@ public class BookServiceImpl implements BookService<Book> {
     }
 
     @Override
-    public List<Book> findBookByTitle(String title) {
-        List<Book> foundBooks = new ArrayList<Book>();
-        for (Book book : bookRepository.getAll()) {
-            if (book.getTitle().toLowerCase().startsWith(title.toLowerCase())) {
-                foundBooks.add(book);
-            }
-        }
-        return foundBooks;
+    public List<Book> findByField(String field) {
+        String likeField = ("%" + field + "%").toLowerCase();
+        return bookRepository.getByField(likeField);
     }
+
 
     @Override
     public List findBookByPublishingHouse(String publishingHouse) {

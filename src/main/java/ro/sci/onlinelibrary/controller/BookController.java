@@ -32,8 +32,8 @@ public class BookController {
 
     @RequestMapping(value = "/books/search", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView showBooksByAuthor(@RequestParam(value = "search", required = false, defaultValue = "") String authorSearch) {
-        List books = bookService.findBookByAuthor(authorSearch);
-        return new ModelAndView("authorView", "search", books);
+    public ModelAndView showBooksByAuthor(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
+        List books = bookService.findByField(search);
+        return new ModelAndView("searchView", "searchResult", books);
     }
 }
