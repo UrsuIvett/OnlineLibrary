@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface UserService<T extends User> {
 
-    List<T> findAll (T customers);
+    List<T> findAll ();
 
     List<T> findCustomerByLastName(String lastName);
 
