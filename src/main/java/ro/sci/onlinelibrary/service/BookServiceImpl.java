@@ -64,7 +64,17 @@ public class BookServiceImpl implements BookService<Book> {
         return foundBooks;
     }
 
-  public Repository<Book> getBookRepository() {
+    @Override
+    public void add(Book book) {
+
+    }
+
+    @Override
+    public void update(Book book) {
+
+    }
+
+    public Repository<Book> getBookRepository() {
     return bookRepository;
    }
 }

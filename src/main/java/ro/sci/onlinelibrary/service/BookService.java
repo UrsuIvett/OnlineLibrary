@@ -18,4 +18,7 @@ public interface BookService<T extends Book> {
     List<T> findBookByPublishingHouse (String publishingHouse);
 
     List<T> findBookByAuthorAndPublishingHouse (String author, String publishingHouse);
+
+    void add(T t);
+    void update(T t);
 }

@@ -48,4 +48,20 @@ public class BookController {
         model.setViewName("BookForm");
         return model;
     }
+
+    @RequestMapping(value = "/saveBook", method = RequestMethod.POST)
+//    public String saveBook(@ModelAttribute Book book, Model model) {
+//        bookService.add(book);
+//        model.addAttribute("book", book);
+//        return "results";
+    public ModelAndView saveBook(@ModelAttribute Book book) {
+        if (book.getId() == 0) { // if book id is 0 then creating the
+            //book other updating the book
+            bookService.add(book);
+        } else {
+            bookService.update(book);
+        }
+        return new ModelAndView("redirect:/");
+    }
+
 }
