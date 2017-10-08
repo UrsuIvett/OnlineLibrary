@@ -71,7 +71,14 @@ public class BookServiceImpl implements BookService<Book> {
 
     @Override
     public Book searchById(Integer bookId) {
-        return null;
+        List<Book> books = bookRepository.getAll();
+        Book book =  new Book();
+        for (Book b :books ){
+            if (b.getId()!=0 && ( b.getId()== bookId)) {
+                    book = b;
+                }
+            }
+            return book;
     }
 
     @Override
