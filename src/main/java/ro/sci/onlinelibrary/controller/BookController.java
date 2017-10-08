@@ -25,6 +25,7 @@ public class BookController {
     public ModelAndView getBooks() {
         List<Book> books = bookService.findAll();
         return new ModelAndView("bookView", "books", books);
+
     }
 
 
