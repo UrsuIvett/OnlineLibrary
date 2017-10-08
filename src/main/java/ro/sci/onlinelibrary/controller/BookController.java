@@ -36,4 +36,16 @@ public class BookController {
         List books = bookService.findByField(search);
         return new ModelAndView("searchView", "searchResult", books);
     }
+
+    //Submit new book
+    @RequestMapping(value = "/newBook", method = RequestMethod.GET)
+//    public String bookForm(Model model) {
+//        model.addAttribute("book", new Book());
+//        return "submit";
+    public ModelAndView newBook(ModelAndView model) {
+        Book book = new Book();
+        model.addObject("book", book);
+        model.setViewName("BookForm");
+        return model;
+    }
 }
