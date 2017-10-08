@@ -9,13 +9,20 @@ import java.util.List;
  */
 public interface BookService<T extends Book> {
 
+    void add(T t);
+    void update(T t);
+    void delete(T t);
     List<T> findAll ();
 
     List<T> findBookByAuthor (String author);
 
     List<T> findBookByTitle (String title);
 
+    List<T> findByField (String field);
+
     List<T> findBookByPublishingHouse (String publishingHouse);
 
     List<T> findBookByAuthorAndPublishingHouse (String author, String publishingHouse);
+
+    T searchById(Integer bookId);
 }

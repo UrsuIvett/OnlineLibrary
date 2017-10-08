@@ -1,8 +1,13 @@
 package ro.sci.onlinelibrary.model.book;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import javax.persistence.Entity;
+
 /**
  * Created by Ivett on 14-Sep-17.
  */
+@Entity
 public class Book {
     private int id;
     private String title;
@@ -79,4 +84,33 @@ public class Book {
         this.isbn = isbn;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Book book = (Book) o;
+
+        if (id != book.id) return false;
+        if (nrPages != book.nrPages) return false;
+        if (!title.equals(book.title)) return false;
+        if (!author.equals(book.author)) return false;
+        if (!publishingHouse.equals(book.publishingHouse)) return false;
+        if (bookType != book.bookType) return false;
+        if (bookLanguage != book.bookLanguage) return false;
+        return isbn.equals(book.isbn);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + title.hashCode();
+        result = 31 * result + author.hashCode();
+        result = 31 * result + publishingHouse.hashCode();
+        result = 31 * result + bookType.hashCode();
+        result = 31 * result + bookLanguage.hashCode();
+        result = 31 * result + nrPages;
+        result = 31 * result + isbn.hashCode();
+        return result;
+    }
 }
