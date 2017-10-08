@@ -34,6 +34,11 @@ public class BookServiceImpl implements BookService<Book> {
     }
 
     @Override
+    public List<Book> findBookByTitle(String title) {
+        return null;
+    }
+
+    @Override
     public List<Book> findByField(String field) {
         String likeField = ("%" + field + "%").toLowerCase();
         return bookRepository.getByField(likeField);
@@ -65,12 +70,22 @@ public class BookServiceImpl implements BookService<Book> {
     }
 
     @Override
+    public Book searchById(Integer bookId) {
+        return null;
+    }
+
+    @Override
     public void add(Book book) {
 
     }
 
     @Override
     public void update(Book book) {
+
+    }
+
+    @Override
+    public void delete(Book book) {
 
     }
 
