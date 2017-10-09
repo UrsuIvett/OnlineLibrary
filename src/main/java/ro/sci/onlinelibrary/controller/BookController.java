@@ -1,6 +1,7 @@
 package ro.sci.onlinelibrary.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ro.sci.onlinelibrary.model.book.Book;
@@ -15,24 +16,21 @@ public class BookController {
     @Autowired
     private BookService bookService;
 
+
+    //Show all books
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView getBooks() {
         List<Book> books = bookService.findAll();
         return new ModelAndView("bookView", "books", books);
+
     }
 
-//    @RequestMapping(value = "/books/search", method = RequestMethod.GET)
-//    @ResponseBody
-//    public ModelAndView showBooksByTitle(@RequestParam(value = "search", required = false, defaultValue = "") String titleSearch) {
-//        List books = bookService.findBookByTitle(titleSearch);
-//        return new ModelAndView("titleView", "search", books);
-//
-//    }
 
+    //Search books from repository
     @RequestMapping(value = "/books/search", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView showBooksByAuthor(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
+    public ModelAndView searchBooks(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
         List books = bookService.findByField(search);
         return new ModelAndView("searchView", "searchResult", books);
     }
@@ -64,4 +62,20 @@ public class BookController {
         return new ModelAndView("redirect:/");
     }
 
+    //Delete a book
+//    @RequestMapping(value = "/bookS/delete/{id}", method = RequestMethod.GET)
+//    public String deleteBookForm(@PathVariable("id") Integer id, Model model) {
+//
+//        Book book = bookService.searchById(id);
+//        model.addAttribute("booking", book);
+//        return "deleteBookView";
+//    }
+
+    @RequestMapping(value = "/deleteBook/{id}", method = RequestMethod.GET)
+    public String deleteBookingForm(@PathVariable("id") Integer id, Model model) {
+
+        Book currentBook = bookService.searchById(id);
+        model.addAttribute("booking", currentBook);
+        return "deletebook";
+    }
 }

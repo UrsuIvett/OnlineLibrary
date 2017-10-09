@@ -29,4 +29,3 @@ public interface BookRepository extends Repository<Book> {
     @Select("SELECT * FROM books WHERE LOWER(author) LIKE #{field} or LOWER(title) LIKE #{field}")
     List<Book> getByField(@Param("field") String field);
 }
-

@@ -1,7 +1,7 @@
-package ro.sci.onlinelibrary.model;
+package ro.sci.onlinelibrary.model.user;
 
 /**
- * Created by Ivett on 14-Sep-17.
+ * Created by iulia on 9/15/2017.
  */
 public class User {
     private int id;
@@ -9,9 +9,6 @@ public class User {
     private String lastName;
     private String phone;
     private String email;
-
-    public User() {
-    }
 
     public int getId() {
         return id;

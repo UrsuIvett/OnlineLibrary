@@ -1,9 +1,7 @@
 package ro.sci.onlinelibrary.repository;
 
 import org.apache.ibatis.annotations.Select;
-import ro.sci.onlinelibrary.model.User;
-import ro.sci.onlinelibrary.model.book.Book;
-import ro.sci.onlinelibrary.model.user.Customer;
+import ro.sci.onlinelibrary.model.user.User;
 
 import java.util.List;
 

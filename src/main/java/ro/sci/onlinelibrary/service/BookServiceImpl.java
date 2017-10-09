@@ -1,5 +1,6 @@
 package ro.sci.onlinelibrary.service;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ro.sci.onlinelibrary.model.book.Book;
@@ -14,6 +15,23 @@ public class BookServiceImpl implements BookService<Book> {
 
     @Autowired
     private BookRepository bookRepository;
+
+
+    @Override
+    public void add(Book book) {
+
+    }
+
+    @Override
+    public void update(Book book) {
+
+    }
+
+    @Override
+    public void delete(Book book) {
+        this.bookRepository.delete(book);
+
+    }
 
     @Override
     public List<Book> findAll() {
@@ -35,15 +53,21 @@ public class BookServiceImpl implements BookService<Book> {
 
     @Override
     public List<Book> findBookByTitle(String title) {
-        return null;
+        List<Book> foundBooks = new ArrayList<Book>();
+        for (Book book : bookRepository.getAll()) {
+            if (book.getTitle().toLowerCase().startsWith(title.toLowerCase())) {
+                foundBooks.add(book);
+            }
+        }
+        return foundBooks;
     }
 
     @Override
     public List<Book> findByField(String field) {
         String likeField = ("%" + field + "%").toLowerCase();
+
         return bookRepository.getByField(likeField);
     }
-
 
     @Override
     public List findBookByPublishingHouse(String publishingHouse) {
@@ -75,26 +99,12 @@ public class BookServiceImpl implements BookService<Book> {
         Book book =  new Book();
         for (Book b :books ){
             if (b.getId()!=0 && ( b.getId()== bookId)) {
-                    book = b;
-                }
+                book = b;
             }
-            return book;
+        }
+        return book;
     }
 
-    @Override
-    public void add(Book book) {
-
-    }
-
-    @Override
-    public void update(Book book) {
-
-    }
-
-    @Override
-    public void delete(Book book) {
-
-    }
 
     public Repository<Book> getBookRepository() {
     return bookRepository;
