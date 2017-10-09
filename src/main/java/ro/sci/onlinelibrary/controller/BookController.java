@@ -62,15 +62,6 @@ public class BookController {
         return new ModelAndView("redirect:/");
     }
 
-    //Delete a book
-//    @RequestMapping(value = "/bookS/delete/{id}", method = RequestMethod.GET)
-//    public String deleteBookForm(@PathVariable("id") Integer id, Model model) {
-//
-//        Book book = bookService.searchById(id);
-//        model.addAttribute("booking", book);
-//        return "deleteBookView";
-//    }
-
     @RequestMapping(value = "/deleteBook/{id}", method = RequestMethod.GET)
     public String deleteBookingForm(@PathVariable("id") Integer id, Model model) {
 
