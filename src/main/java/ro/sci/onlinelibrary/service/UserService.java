@@ -1,6 +1,6 @@
 package ro.sci.onlinelibrary.service;
 
-import ro.sci.onlinelibrary.model.customer.User;
+import ro.sci.onlinelibrary.model.user.User;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface UserService<T extends User> {
 
-    List<T> findAll (T customers);
+    List<T> findAll ();
 
     List<T> findCustomerByLastName(String lastName);
 

@@ -13,7 +13,7 @@ public interface BookService<T extends Book> {
 
     List<T> findBookByAuthor (String author);
 
-    List<T> findBookByTitle (String title);
+    List<T> findByField (String field);
 
     List<T> findBookByPublishingHouse (String publishingHouse);
 

@@ -5,10 +5,10 @@
     <title></title>
 </head>
 <body>
-<form th:object="${book}" th:action="@{/books/search/title}" method="get">
-    <input type="text" name="search" id="search" th:value="${search}" />
+<form th:object="${book}" th:action="@{/books/search}" method="get">
+    <input type="text" name="searchField" id="searchField" th:value="${searchField}" />
     <input type="submit" value="Search" />
-    <div th:if="${not #lists.isEmpty(search)}">
+    <div th:if="${not #lists.isEmpty(searchResult)}">
         <h2>Books List</h2>
         <table class="table table-striped">
             <tr>
@@ -17,7 +17,7 @@
                 <th>Title</th>
                 <th>Category</th>
             </tr>
-            <tr th:each="book: ${search}">
+            <tr th:each="book: ${searchResult}">
                 <td th:text="${book.id}">id</td>
                 <td th:text="${book.author}">author</td>
                 <td th:text="${book.title}">title</td>

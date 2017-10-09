@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Online library</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Book added</h1>
+<p th:text="'id: ' + ${book.id}" />
+<p th:text="'title: ' + ${book.title}" />
+<p th:text="'author: ' + ${book.author}" />
+<p th:text="'publishingHouse: ' + ${book.publishingHouse}" />
+<p th:text="'bookType: ' + ${book.bookType}" />
+<p th:text="'bookLanguage: ' + ${book.bookLanguage}" />
+<p th:text="'nrPages: ' + ${book.nrPages}" />
+<p th:text="'isbn: ' + ${book.isbn}" />
+
+
+<a href="/submit">Add another employee</a>
+</body>
+</html>
