@@ -1,6 +1,5 @@
 package ro.sci.onlinelibrary.service;
 
-import ro.sci.onlinelibrary.model.User;
 import ro.sci.onlinelibrary.model.user.Customer;
 
 import java.util.List;

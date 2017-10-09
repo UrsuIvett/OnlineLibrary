@@ -2,8 +2,6 @@ package ro.sci.onlinelibrary.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import ro.sci.onlinelibrary.model.User;
-import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.repository.UserRepository;
 
 import java.util.ArrayList;
