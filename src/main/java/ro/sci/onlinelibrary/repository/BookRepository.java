@@ -5,27 +5,27 @@ import ro.sci.onlinelibrary.model.book.Book;
 
 import java.util.List;
 
+/**
+ * Created by iulia on 9/15/2017.
+ */
+
 public interface BookRepository extends Repository<Book> {
 
     @Select("SELECT * FROM books")
     List<Book> getAll();
 
-    @Select("SELECT * FROM books WHERE author like %author%")
-    List<Book> getBookByAuthor (String author);
-
-    List<Book> getBookByPublishingHouse (String publishingHouse);
-
-    List<Book> getBookByLanguage (String language);
-
-    @Insert("INSERT into books (id,title,author,publishingHouse,bookType,bookLanguage,nrPages,isbn) VALUES(#{id},#{title},#{author},#{publishingHouse},#{bookType},#{bookLanguage},#{nrPages},#{isbn})")
-    @SelectKey(statement="call identity()", keyProperty="id", before=false, resultType=Integer.class)
+    @Insert("INSERT INTO books(id,title,author,publishinghouse,booktype,booklanguage,nrpages,isbn) values(?,?,?,?,?,?,?,?)")
     void add (Book book);
 
+    @Delete("DELETE FROM books WHERE bookId='1'")
     void delete (Book book);
-    @Delete("DELETE FROM books WHERE id=#{id}")
 
+    @Update("UPDATE books SET title='Fluturi Vol1' WHERE title='Fluturi Volumul I'")
     void update (Book book);
 
-    @Select("SELECT * FROM books WHERE LOWER(author) LIKE #{field} or LOWER(title) LIKE #{field}")
+    @Select("SELECT * FROM books WHERE LOWER(author) LIKE #{field} or LOWER(title) LIKE #{field} or LOWER (publishingHouse) LIKE #{field}")
     List<Book> getByField(@Param("field") String field);
+
+    Book searchById(Integer bookId);
+
 }
