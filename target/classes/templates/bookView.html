@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/xhtml">
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
     <title>Get all books</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
+
 <table>
     <th:block th:each = "book : ${books}">
         <tr>
@@ -17,6 +20,7 @@
             <td th:text="${book.isbn}">...</td>
         </tr>
     </th:block>
+
 </table>
 </body>
 </html>
