@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Book Form Submission</title>
+</head>
+<body>
+<h1>Result</h1>
+<p th:text="'book id: ' + ${book.id}" />
+<p th:text="'book title: ' + ${book.title}" />
+<p th:text="'book author: ' + ${book.author}" />
+<p th:text="'book publishing house: ' + ${book.publishingHouse}" />
+<p th:text="'book type: ' + ${book.bookType}" />
+<p th:text="'book language: ' + ${book.bookLanguage}" />
+<p th:text="'book number of pages: ' + ${book.nrPages}" />
+<p th:text="'book isbn ' + ${book.isbn}" />
+<a href="/books/submit">Submit another book</a>
+</body>
+</html>
