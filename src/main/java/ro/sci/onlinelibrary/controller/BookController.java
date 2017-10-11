@@ -104,5 +104,7 @@ public class BookController {
         bookService.update(updatedBook);
 
         return new ModelAndView("bookView", "books", bookService.findAll());
+
+
     }
 }
