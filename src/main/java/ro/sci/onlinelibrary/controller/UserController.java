@@ -27,7 +27,8 @@ public class UserController {
     @ResponseBody
     public ModelAndView getUsers() {
         List<User> users = userService.findAll();
-        return new ModelAndView("userView", "users", users);
+        return new ModelAndView("usersView", "users", users);
     }
-
+    //todo search by field
+    //todo search by id
 }

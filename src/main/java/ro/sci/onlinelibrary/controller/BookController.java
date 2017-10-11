@@ -22,7 +22,7 @@ public class BookController {
     @ResponseBody
     public ModelAndView getBooks() {
         List<Book> books = bookService.findAll();
-        return new ModelAndView("bookView", "books", books);
+        return new ModelAndView("booksView", "books", books);
     }
 
     @RequestMapping(value = "/books/search", method = RequestMethod.GET)
@@ -33,6 +33,8 @@ public class BookController {
 
 
     }
+
+    //todo search by id
 //
 //    @RequestMapping(value = "/books/search/author", method = RequestMethod.GET)
 //    @ResponseBody

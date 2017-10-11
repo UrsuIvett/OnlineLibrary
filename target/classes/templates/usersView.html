@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+
+    <title>Get all users</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+
+<table>
+    <th:block th:each = "user : ${users}">
+        <tr>
+            <td th:text="${user.id}">...</td>
+            <td th:text="${user.firstName}">...</td>
+            <td th:text="${user.lastName}">...</td>
+            <td th:text="${user.phone}">...</td>
+            <td th:text="${user.email}">...</td>
+        </tr>
+    </th:block>
+
+</table>
+</body>
+</html>

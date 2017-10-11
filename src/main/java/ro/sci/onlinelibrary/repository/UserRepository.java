@@ -12,7 +12,6 @@ public interface UserRepository<T extends User> extends Repository<T> {
     @Select("SELECT * FROM users")
     List<User> getAll();
 
-    @Select("SELECT * FROM users WHERE lastName like %lastName%")
     List<User> getCustomersByLastName();
 
     List<User> getCustomersByEmail();

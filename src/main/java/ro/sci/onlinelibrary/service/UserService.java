@@ -11,11 +11,11 @@ public interface UserService<T extends User> {
 
     List<T> findAll ();
 
-    List<T> findCustomerByLastName(String lastName);
+    List<T> findUsersByLastName(String lastName);
 
-    List<T> findCustomerByFullName(String fullName);
+    List<T> findUsersByFullName(String fullName);
 
 
-    List<T> findCustomerByEmail(String email);
+    List<T> findUsersByEmail(String email);
 
 }
