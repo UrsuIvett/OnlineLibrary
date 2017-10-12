@@ -21,7 +21,7 @@ public class BookController {
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView getBooks() {
-        List<Book> books = bookService.findAll();
+        List<Book> books = bookService.getAll();
         return new ModelAndView("booksView", "books", books);
     }
 
@@ -29,13 +29,18 @@ public class BookController {
     @ResponseBody
     public ModelAndView searchBooks(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
         List books = bookService.findByField(search);
-        return new ModelAndView("searchView", "searchResult", books);
-
-
+        return new ModelAndView("bookSearchView", "searchResult", books);
     }
 
-    //todo search by id
-//
+    @RequestMapping(value = "/books/searchById", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView searchBookById(@RequestParam(value = "search", required = false, defaultValue = "0") Integer searchById) {
+        List books = bookService.findById(searchById);
+        return new ModelAndView("searchBookByIdView", "searchResultById", books);
+    }
+
+
+    //
 //    @RequestMapping(value = "/books/search/author", method = RequestMethod.GET)
 //    @ResponseBody
 //    public ModelAndView showBooksByAuthor(@RequestParam(value = "search", required = false, defaultValue = "") String authorSearch) {

@@ -9,13 +9,9 @@ import java.util.List;
  */
 public interface UserService<T extends User> {
 
-    List<T> findAll ();
+    List<T> getAll();
 
-    List<T> findUsersByLastName(String lastName);
+    List<T> findById(int id);
 
-    List<T> findUsersByFullName(String fullName);
-
-
-    List<T> findUsersByEmail(String email);
-
+    List<T> findByField (String field);
 }

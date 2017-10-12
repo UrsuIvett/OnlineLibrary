@@ -6,7 +6,6 @@ import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.repository.BookRepository;
 import ro.sci.onlinelibrary.repository.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,21 +18,8 @@ public class BookServiceImpl implements BookService<Book> {
     private BookRepository bookRepository;
 
 
-    public List<Book> findAll() {
+    public List<Book> getAll() {
         return bookRepository.getAll();
-    }
-
-    public List findBookByAuthor(String author) {
-        List<Book> foundBooks = new ArrayList<Book>();
-
-        for (Book book : bookRepository.getAll()) {
-            if (book.getAuthor().toLowerCase().contains(author.toLowerCase())) {
-                foundBooks.add(book);
-            }
-
-        }
-
-        return foundBooks;
     }
 
     @Override
@@ -43,31 +29,11 @@ public class BookServiceImpl implements BookService<Book> {
         return bookRepository.getByField(likeField);
     }
 
-    public List findBookByPublishingHouse(String publishingHouse) {
-        List<Book> foundBooks = new ArrayList<Book>();
-
-        for (Book book : bookRepository.getAll()) {
-            if (book.getPublishingHouse().equalsIgnoreCase(publishingHouse)) {
-                foundBooks.add(book);
-            }
-
-        }
-
-        return foundBooks;
+    @Override
+    public List<Book> findById(int id) {
+        return bookRepository.getById(id);
     }
 
-    public List findBookByAuthorAndPublishingHouse(String author, String publishingHouse) {
-        List<Book> foundBooks = new ArrayList<Book>();
-
-        for (Book book : bookRepository.getAll()) {
-            if (book.getPublishingHouse().equalsIgnoreCase(publishingHouse) && book.getAuthor().equalsIgnoreCase(author)) {
-                foundBooks.add(book);
-            }
-
-        }
-
-        return foundBooks;
-    }
 
     public Repository<Book> getBookRepository() {
         return bookRepository;

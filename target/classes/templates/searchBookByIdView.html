@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+
+    <title></title>
+</head>
+<body>
+<form th:object="${book}" th:action="@{/books/searchById}" method="get">
+    <input type="text" name="search" id="search" th:value="${search}" />
+    <input type="submit" value="Search" />
+    <div th:if="${not #lists.isEmpty(searchResultById)}">
+        <h2>Searched book is:</h2>
+        <table class="table table-striped">
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Language</th>
+                <th>Number of pages</th>
+                <th>isbn</th>
+            </tr>
+            <tr th:each="book: ${searchResultById}">
+                <td th:text="${book.author}">author</td>
+                <td th:text="${book.title}">title</td>
+                <td th:text="${book.bookType}">bookType</td>
+                <td th:text="${book.bookLanguage}">Language</td>
+                <td th:text="${book.nrPages}">Number of Pages</td>
+                <td th:text="${book.isbn}">isbn</td>
+            </tr>
+        </table>
+    </div>
+</form>
+</body>
+</html>

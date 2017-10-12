@@ -1,5 +1,6 @@
 package ro.sci.onlinelibrary.repository;
 
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import ro.sci.onlinelibrary.model.user.User;
 
@@ -12,9 +13,8 @@ public interface UserRepository<T extends User> extends Repository<T> {
     @Select("SELECT * FROM users")
     List<User> getAll();
 
-    List<User> getCustomersByLastName();
-
-    List<User> getCustomersByEmail();
+    @Select("SELECT * FROM users WHERE id = #{id}")
+    List<User> getById(int id);
 
     void add (User user);
 
@@ -22,5 +22,7 @@ public interface UserRepository<T extends User> extends Repository<T> {
 
     void update (User user);
 
+    @Select("SELECT * FROM users WHERE LOWER(firstname) LIKE #{field} or LOWER(lastname) LIKE #{field}")
+    List<User> getByField(@Param("field") String field);
 }
 
