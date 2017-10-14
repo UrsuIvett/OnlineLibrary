@@ -7,15 +7,15 @@
 <body>
 <h1>Online Library</h1>
 <h2>SUBMIT NEW BOOK FORM</h2>
-<form action="#" th:action="@{/newBook}" method="post">
-    <p>Book id: <input type="text" th:field="*{book.id}" /></p>
-    <p>Book title: <input type="text" th:field="*{book.title}" /></p>
-    <p>Book author: <input type="text" th:field="*{book.author}" /></p>
-    <p>Publishing house: <input type="text" th:field="*{booking.publishingHouse}" /></p>
-    <p>Book Category: <input type="text" th:field="*{book.bookType}" /></p>
-    <p>Book Language: <input type="text" th:field="*{book.bookLanguage}" /></p>
-    <p>Number of pages: <input type="text" th:field="*{book.nrPages}" /></p>
-    <p>Isbn: <input type="text" th:field="*{book.isbn}" /></p>
+<form th:object="${book}" th:action="@{/newBook}" method="post">
+    <p>Book id: <input type="text" th:field="*{id}" /></p>
+    <p>Book title: <input type="text" th:field="*{title}" /></p>
+    <p>Book author: <input type="text" th:field="*{author}" /></p>
+    <p>Publishing house: <input type="text" th:field="*{publishingHouse}" /></p>
+    <p>Book Category: <input type="text" th:field="*{bookType}" /></p>
+    <p>Book Language: <input type="text" th:field="*{bookLanguage}" /></p>
+    <p>Number of pages: <input type="text" th:field="*{nrPages}" /></p>
+    <p>Isbn: <input type="text" th:field="*{isbn}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 </body>
