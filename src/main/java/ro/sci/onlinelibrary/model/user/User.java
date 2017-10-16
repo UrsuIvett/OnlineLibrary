@@ -1,4 +1,4 @@
-package ro.sci.onlinelibrary.model.customer;
+package ro.sci.onlinelibrary.model.user;
 
 /**
  * Created by iulia on 9/15/2017.
@@ -9,11 +9,6 @@ public class User {
     private String lastName;
     private String phone;
     private String email;
-
-    public User(String lastName, String email) {
-        this.lastName = lastName;
-        this.email = email;
-    }
 
     public int getId() {
         return id;

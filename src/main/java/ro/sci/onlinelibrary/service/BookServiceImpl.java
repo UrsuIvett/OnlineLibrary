@@ -6,14 +6,16 @@ import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.repository.BookRepository;
 import ro.sci.onlinelibrary.repository.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 /**
  * Created by iulia on 9/15/2017.
  */
-@Service
+@Service("bookService")
 public class BookServiceImpl implements BookService<Book> {
+
+    private static final Logger LOGGER = Logger.getLogger("Online library");
 
     @Autowired
     private BookRepository bookRepository;
@@ -23,58 +25,38 @@ public class BookServiceImpl implements BookService<Book> {
         return bookRepository.getAll();
     }
 
-    public List findBookByAuthor(String author) {
-        List<Book> foundBooks = new ArrayList<Book>();
+    @Override
+    public List<Book> findByField(String field) {
+        String likeField = ("%" + field + "%").toLowerCase();
 
-        for (Book book : bookRepository.getAll()) {
-            if (book.getAuthor().toLowerCase().startsWith(author.toLowerCase())) {
-                foundBooks.add(book);
-            }
-
-        }
-
-        return foundBooks;
+        return bookRepository.getByField(likeField);
     }
 
     @Override
-    public List<Book> findBookByTitle(String title) {
-        List<Book> foundBooks = new ArrayList<Book>();
-
-        for (Book book : bookRepository.getAll()) {
-            if (book.getTitle().toLowerCase().startsWith(title.toLowerCase())) {
-                foundBooks.add(book);
-            }
-
-        }
-
-        return foundBooks;
+    public void add (Book book) {
+        this.bookRepository.add(book);
     }
 
-    public List findBookByPublishingHouse(String publishingHouse) {
-        List<Book> foundBooks = new ArrayList<Book>();
-
-        for (Book book : bookRepository.getAll()) {
-            if (book.getPublishingHouse().equalsIgnoreCase(publishingHouse)) {
-                foundBooks.add(book);
-            }
-
-        }
-
-        return foundBooks;
+    @Override
+    public void delete(int id) {
+        this.bookRepository.delete(id);
     }
 
-    public List findBookByAuthorAndPublishingHouse(String author, String publishingHouse) {
-        List<Book> foundBooks = new ArrayList<Book>();
-
-        for (Book book : bookRepository.getAll()) {
-            if (book.getPublishingHouse().equalsIgnoreCase(publishingHouse) && book.getAuthor().equalsIgnoreCase(author)) {
-                foundBooks.add(book);
-            }
-
-        }
-
-        return foundBooks;
+    @Override
+    public void update(int id) {
+        this.bookRepository.update(id);
     }
+
+    @Override
+    public Book searchById(Integer bookId) {
+        Book book = this.bookRepository.searchById(bookId);
+        return book;
+    }
+
+    @Override
+    public void setBookRepository(BookRepository bookRepository) {
+    }
+
 
     public Repository<Book> getBookRepository() {
         return bookRepository;
