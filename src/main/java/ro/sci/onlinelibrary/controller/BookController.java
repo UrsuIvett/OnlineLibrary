@@ -2,6 +2,7 @@ package ro.sci.onlinelibrary.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ import java.util.logging.Logger;
 /**
  * Created by iulia on 9/18/2017.
  */
-@RestController
+@Controller
 public class BookController {
 
     private static final Logger LOGGER = Logger.getLogger("Onlinelibrary");
@@ -38,7 +39,7 @@ public class BookController {
         return new ModelAndView("bookView", "books", books);
     }
 
-    //Show all books by a criteria
+    //Search books
 
     @RequestMapping(value = "/books/search", method = RequestMethod.GET)
     @ResponseBody
@@ -51,60 +52,48 @@ public class BookController {
 
     // Submit new book
 
-    @RequestMapping(value = "/books/submit", method = RequestMethod.GET)
+    @GetMapping(value = "/newBook")
     public String bookForm(Model model) {
         model.addAttribute("book", new Book());
 
         return "submitBook";
     }
 
-    @RequestMapping(value = "/books/submit", method = RequestMethod.POST)
-    public String bookSubmit(@ModelAttribute Book book, Model model) {
-        bookService.add(book);
-        model.addAttribute("book", book);
 
-        return "resultBook";
-
+    @PostMapping(value = "/newBook")
+    @ResponseBody
+    public String bookForm(@ModelAttribute Book book) {
+        LOGGER.log(Level.INFO, "Added a new book");
+        bookRepository.add(book);
+        return "Book saved!";
     }
 
     // Delete book
 
-    @RequestMapping(value = "/books/delete/{id}", method = RequestMethod.GET)
-    public String deleteBookForm(@PathVariable("id") Integer id, Model model) {
-        Book currentBook = bookService.searchById(id);
-        model.addAttribute("book", currentBook);
-
-        return "deleteBook";
-    }
-
-    @RequestMapping(value = "/books/delete/{id}", method = RequestMethod.POST)
-    @ResponseStatus(HttpStatus.OK)
-    public ModelAndView deleteBook(@PathVariable("id") Integer id, Model model) {
-
-        LOGGER.log(Level.INFO, "Deleting book with id " + id);
-
-        Book book = bookService.searchById(id);
-        bookService.delete(book);
-
-        model.addAttribute("book", book);
-
-        return new ModelAndView("bookView", "books", book);
+    @RequestMapping(value  = "/deleteBook/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteBook(Book book) {
+        LOGGER.log(Level.INFO, "Deleting book");
+        bookRepository.delete(book.getId());
+        return "Book deleted";
     }
 
     // Update book
 
-    @RequestMapping(value = "/books/{id}", method = RequestMethod.POST)
-    public ModelAndView updateBook(@PathVariable("id") Integer id, @ModelAttribute Book book) {
-
-        LOGGER.log(Level.INFO, "Updating booking");
-        Book updatedBook = bookService.searchById(id);
-        updatedBook.setTitle(book.getTitle());
-
-
-        bookService.update(updatedBook);
-
-        return new ModelAndView("bookView", "books", bookService.findAll());
-
-
+    @PostMapping (value = "/updateBook/{id}")
+    @ResponseBody
+    public String updateBookForm(@ModelAttribute Book book) {
+        Book updateBook = bookRepository.searchById(book.getId());
+        // updateBook.setId(book.getId());
+        updateBook.setTitle(book.getTitle());
+        updateBook.setAuthor(book.getAuthor());
+        updateBook.setPublishingHouse(book.getPublishingHouse());
+        updateBook.setBookType(book.getBookType());
+        updateBook.setBookLanguage(book.getBookLanguage());
+        updateBook.setNrPages(book.getNrPages());
+        updateBook.setIsbn(book.getIsbn());
+        LOGGER.log(Level.INFO, "Updating book");
+        bookRepository.update(updateBook);
+        return "Book updated!";
     }
 }
