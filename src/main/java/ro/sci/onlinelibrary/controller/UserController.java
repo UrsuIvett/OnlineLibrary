@@ -1,12 +1,12 @@
 package ro.sci.onlinelibrary.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.model.user.User;
+import ro.sci.onlinelibrary.repository.UserRepository;
 import ro.sci.onlinelibrary.service.UserService;
 
 import java.util.List;
@@ -21,6 +21,9 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView getUsers() {
@@ -28,4 +31,35 @@ public class UserController {
         return new ModelAndView("userView", "users", users);
     }
 
+    //Search books from repository
+    @RequestMapping(value = "/users/search", method = RequestMethod.GET)
+    @ResponseBody
+    public ModelAndView searchUsers(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
+        List users = userService.findByField(search);
+        return new ModelAndView("userSearchView", "searchResult", users);
+    }
+
+    //Ask submit new user
+    @GetMapping(value = "/newUser")
+    public String userForm(Model model) {
+        model.addAttribute("user", new User());
+        return "submitUser";
+    }
+
+    //Submit new user
+    @PostMapping(value = "/newUser")
+    @ResponseBody
+    public String userForm(@ModelAttribute User user) {
+        userRepository.add(user);
+        return "User saved!";
+    }
+
+    //Delete a user
+
+    @RequestMapping(value  = "/deleteUser/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteUser(User user) {
+        userRepository.delete(user.getId());
+        return "User deleted";
+    }
 }

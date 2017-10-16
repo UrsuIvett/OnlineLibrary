@@ -1,6 +1,10 @@
 package ro.sci.onlinelibrary.repository;
 
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.model.user.User;
 
 import java.util.List;
@@ -13,16 +17,14 @@ public interface UserRepository extends Repository<User> {
     @Select("SELECT * FROM users")
     List<User> getAll();
 
-    @Select("SELECT * FROM users WHERE firstName like %firstName%")
-    List<User> getBookByAuthor (String author);
+    @Select("SELECT * FROM users WHERE LOWER(firstName) LIKE #{field} or LOWER(lastName) LIKE #{field} or LOWER (email) LIKE #{field}")
+    List<User> getByField(@Param("field") String field);
 
-    List<User> getBookByPublishingHouse (String publishingHouse);
-
-    List<User> getBookByLanguage (String language);
-
+    @Insert("INSERT INTO users(id,firstname,lastname,phone,email) values(#{id},#{firstName},#{lastName},#{phone},#{email})")
     void add (User user);
 
-    void delete (User user);
+    @Delete("DELETE FROM users WHERE id=#{userId}")
+    void delete (int userId);
 
     void update (User user);
 }

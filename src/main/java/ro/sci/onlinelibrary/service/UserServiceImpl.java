@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Service
+@Service("userService")
 public class UserServiceImpl implements UserService<User> {
 
     @Autowired
@@ -20,35 +20,38 @@ public class UserServiceImpl implements UserService<User> {
     }
 
     @Override
-    public List<User> findUserByLastName(String lastName) {
-        List<User> foundUsers = new ArrayList<User>();
-        for (User user : userRepository.getAll()) {
-            if (user.getLastName().toLowerCase().startsWith(lastName.toLowerCase())) {
-                foundUsers.add(user);
-            }
-        }
-        return foundUsers;
+    public List<User> findByField(String field) {
+        String likeField = ("%" + field + "%").toLowerCase();
+        return userRepository.getByField(likeField);
     }
 
     @Override
-    public List<User> findUserByFullName(String fullName) {
-        List<User> foundUsers = new ArrayList<User>();
-        for (User user : userRepository.getAll()) {
-            if (user.getLastName().toLowerCase().startsWith(fullName.toLowerCase())) {
-                foundUsers.add(user);
-            }
-        }
-        return foundUsers;
+    public void add(User user) {
+        this.userRepository.add(user);
     }
 
     @Override
-    public List<User> findUserByEmail(String email) {
-        List<User> foundUsers = new ArrayList<User>();
-        for (User user : userRepository.getAll()) {
-            if (user.getEmail().toLowerCase().startsWith(email.toLowerCase())) {
-                foundUsers.add(user);
-            }
-        }
-        return foundUsers;
+    public void delete(int id) {
+        this.userRepository.delete(id);
+    }
+
+    @Override
+    public void update(User user) {
+        this.userRepository.update(user);
+
+    }
+
+    @Override
+    public User searchById(Integer userId) {
+        User user = userRepository.searchById(userId);
+        return user;
+    }
+
+    @Override
+    public void setUserRepository(UserRepository userRepository) {
+    }
+
+    public UserRepository getUserRepository() {
+        return userRepository;
     }
 }

@@ -1,5 +1,7 @@
 package ro.sci.onlinelibrary.service;
 import ro.sci.onlinelibrary.model.user.User;
+import ro.sci.onlinelibrary.repository.UserRepository;
+
 import java.util.List;
 
 /**
@@ -9,10 +11,16 @@ public interface UserService<T extends User> {
 
     List<T> findAll ();
 
-    List<T> findUserByLastName(String lastName);
+    List<T> findByField (String field);
 
-    List<T> findUserByFullName(String fullName);
+    void add(User user);
 
-    List<T> findUserByEmail(String email);
+    void delete (int id);
+
+    void update (User user);
+
+    T searchById(Integer bookId);
+
+    void setUserRepository(UserRepository userRepository);
 
 }

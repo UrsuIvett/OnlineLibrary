@@ -6,12 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ro.sci.onlinelibrary.model.book.Book;
-import ro.sci.onlinelibrary.model.user.Review;
 import ro.sci.onlinelibrary.repository.BookRepository;
 import ro.sci.onlinelibrary.service.BookService;
-
 import java.util.List;
-
 
 @Controller
 public class BookController {
@@ -62,6 +59,30 @@ public class BookController {
         return "Book deleted";
     }
 
+    //Ask for update a book
+    @GetMapping(value = "/updateBook/{id}")
+    public String updateBookForm(Model model) {
+        model.addAttribute("book", new Book());
+        return "updateBook";
+    }
+
+    //Update a book
+    @PostMapping (value = "/updateBook/{id}")
+    @ResponseBody
+    public String updateBookForm(@ModelAttribute Book book) {
+        Book updateBook = bookRepository.searchById(book.getId());
+       // updateBook.setId(book.getId());
+        updateBook.setTitle(book.getTitle());
+        updateBook.setAuthor(book.getAuthor());
+        updateBook.setPublishingHouse(book.getPublishingHouse());
+        updateBook.setBookType(book.getBookType());
+        updateBook.setBookLanguage(book.getBookLanguage());
+        updateBook.setNrPages(book.getNrPages());
+        updateBook.setIsbn(book.getIsbn());
+        bookRepository.update(updateBook);
+        return "Book updated!";
+    }
+
 //    @RequestMapping(value = "/comment", method = RequestMethod.POST)
 //    @ResponseBody
 //    public ModelAndView getComment() {
@@ -70,13 +91,5 @@ public class BookController {
 //    }
 
 
-//
-//
-//    @RequestMapping(value = "/deleteBook/{id}", method = RequestMethod.GET)
-//    public String deleteBookingForm(@PathVariable("id") Integer id, Model model) {
-//
-//        Book currentBook = bookService.searchById(id);
-//        model.addAttribute("booking", currentBook);
-//        return "deletebook";
-//    }
+
 }
