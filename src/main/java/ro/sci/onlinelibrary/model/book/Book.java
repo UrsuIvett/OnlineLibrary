@@ -67,7 +67,7 @@ public class Book {
         return nrPages;
     }
 
-    public void setNrPages(int noOfPages) {
+    public void setNrPages(int nrPages) {
         this.nrPages = nrPages;
     }
 
