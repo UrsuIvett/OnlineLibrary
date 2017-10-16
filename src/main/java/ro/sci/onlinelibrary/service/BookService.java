@@ -14,4 +14,10 @@ public interface BookService<T extends Book> {
     List<T> findByField (String field);
 
     List<T> findById(int id);
+
+    void add(Book book);
+
+    void update(Book book);
+
+    void delete(Book book);
 }

@@ -1,10 +1,12 @@
 package ro.sci.onlinelibrary.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import ro.sci.onlinelibrary.model.book.Book;
+import ro.sci.onlinelibrary.repository.BookRepository;
 import ro.sci.onlinelibrary.service.BookService;
 
 import java.util.List;
@@ -17,6 +19,7 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+    private BookRepository bookRepository;
 
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     @ResponseBody
@@ -38,6 +41,22 @@ public class BookController {
         List books = bookService.findById(searchById);
         return new ModelAndView("searchBookByIdView", "searchResultById", books);
     }
+
+    //Ask submit new book
+    @GetMapping(value = "/newBook")
+    public String bookForm(Model model) {
+        model.addAttribute("book",new Book());
+        return "submit";
+    }
+
+    //Submit new book
+    @PostMapping(value = "/newBook")
+    @ResponseBody
+    public String bookForm(@ModelAttribute Book book) {
+        bookRepository.add(book);
+        return "Book saved!";
+    }
+
 
 
     //

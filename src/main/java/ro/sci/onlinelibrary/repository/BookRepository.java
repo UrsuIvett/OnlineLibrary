@@ -1,5 +1,6 @@
 package ro.sci.onlinelibrary.repository;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import ro.sci.onlinelibrary.model.book.Book;
 import org.apache.ibatis.annotations.Select;
@@ -18,6 +19,7 @@ public interface BookRepository extends Repository<Book> {
     @Select("SELECT * FROM books WHERE id = #{id}")
     List<Book> getById(int id);
 
+    @Insert("INSERT INTO books(id,title,author,publishinghouse,booktype,booklanguage,nrpages,isbn) values(#{id},#{title},#{author},#{publishingHouse},#{bookType},#{bookLanguage},#{nrPages},#{isbn})")
     void add (Book book);
 
     void delete (Book book);
