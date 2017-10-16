@@ -67,18 +67,17 @@ public class BookController {
     }
 
     //Update a book
-    @PostMapping (value = "/updateBook/{id}")
-    @ResponseBody
+    @PostMapping(value = "/updateBook/{id}")
     public String updateBookForm(@ModelAttribute Book book) {
         Book updateBook = bookRepository.searchById(book.getId());
-       // updateBook.setId(book.getId());
-        updateBook.setTitle(book.getTitle());
-        updateBook.setAuthor(book.getAuthor());
-        updateBook.setPublishingHouse(book.getPublishingHouse());
-        updateBook.setBookType(book.getBookType());
-        updateBook.setBookLanguage(book.getBookLanguage());
-        updateBook.setNrPages(book.getNrPages());
-        updateBook.setIsbn(book.getIsbn());
+//        updateBook.setId(book.getId());
+//        updateBook.setTitle(book.getTitle());
+//        updateBook.setAuthor(book.getAuthor());
+//        updateBook.setPublishingHouse(book.getPublishingHouse());
+//        updateBook.setBookType(book.getBookType());
+//        updateBook.setBookLanguage(book.getBookLanguage());
+//        updateBook.setNrPages(book.getNrPages());
+//        updateBook.setIsbn(book.getIsbn());
         bookRepository.update(updateBook);
         return "Book updated!";
     }

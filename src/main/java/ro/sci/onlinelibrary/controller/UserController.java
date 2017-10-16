@@ -1,6 +1,7 @@
 package ro.sci.onlinelibrary.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -15,7 +16,7 @@ import java.util.List;
  * Created by Ivett on 01-Oct-17.
  */
 
-@RestController
+@Controller
 public class UserController {
 
     @Autowired
@@ -40,19 +41,20 @@ public class UserController {
     }
 
     //Ask submit new user
-    @GetMapping(value = "/newUser")
+    @GetMapping(value = "/registration")
     public String userForm(Model model) {
         model.addAttribute("user", new User());
-        return "submitUser";
+        return "registration";
     }
 
     //Submit new user
-    @PostMapping(value = "/newUser")
+    @PostMapping(value = "/registration")
     @ResponseBody
     public String userForm(@ModelAttribute User user) {
         userRepository.add(user);
         return "User saved!";
     }
+
 
     //Delete a user
 
