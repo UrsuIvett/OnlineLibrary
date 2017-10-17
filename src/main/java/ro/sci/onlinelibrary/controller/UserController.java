@@ -31,7 +31,7 @@ public class UserController {
         return new ModelAndView("userSearchView", "searchResult", users);
     }
 
-    @RequestMapping(value = "/users/searchById", method = RequestMethod.GET)
+    @RequestMapping(value = "/users/getById", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView searchUserById(@RequestParam(value = "search", required = false, defaultValue = "0") Integer searchById) {
         List users = userService.findById(searchById);

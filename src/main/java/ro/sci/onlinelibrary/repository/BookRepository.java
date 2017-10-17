@@ -18,7 +18,7 @@ public interface BookRepository extends Repository<Book> {
     void add (Book book);
 
     @Delete("DELETE FROM books WHERE id=#{bookId}")
-    void delete (int id);
+    void delete (int bookId);
 
     @Update("UPDATE books SET title=#{title}, author=#{author}, publishinghouse=#{publishingHouse}, booktype=#{bookType}, booklanguage=#{bookLanguage}, nrpages=#{nrPages}, isbn=#{isbn} WHERE id=#{bookId}")
     void update (Book book);
@@ -27,6 +27,6 @@ public interface BookRepository extends Repository<Book> {
     List<Book> getByField(@Param("field") String field);
 
     @Select("SELECT * FROM books WHERE id=#{bookId}")
-    Book getById(int id);
+    Book getById(int bookId);
 
 }

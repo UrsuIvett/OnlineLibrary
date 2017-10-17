@@ -35,7 +35,7 @@ public class BookController {
         return new ModelAndView("bookSearchView", "searchResult", books);
     }
 
-    @RequestMapping(value = "/books/searchById", method = RequestMethod.GET)
+    @RequestMapping(value = "/books/getById", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView searchBookById(@RequestParam(value = "search", required = false, defaultValue = "0") Integer searchById) {
         Book book = bookService.findById(searchById);

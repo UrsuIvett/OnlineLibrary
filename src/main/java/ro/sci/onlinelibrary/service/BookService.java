@@ -19,5 +19,5 @@ public interface BookService<T extends Book> {
 
     void update(Book book);
 
-    void delete(Book book);
+    void delete(int id);
 }
