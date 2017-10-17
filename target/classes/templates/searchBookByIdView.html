@@ -5,6 +5,8 @@
     <title></title>
 </head>
 <body>
+<h1> Online Library </h1>
+<h2> Search a book by it's id </h2>
 <form th:object="${book}" th:action="@{/books/searchById}" method="get">
     <input type="text" name="search" id="search" th:value="${search}" />
     <input type="submit" value="Search" />
