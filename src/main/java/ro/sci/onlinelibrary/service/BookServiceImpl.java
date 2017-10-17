@@ -30,7 +30,7 @@ public class BookServiceImpl implements BookService<Book> {
     }
 
     @Override
-    public List<Book> findById(int id) {
+    public Book findById(int id) {
         return bookRepository.getById(id);
     }
 

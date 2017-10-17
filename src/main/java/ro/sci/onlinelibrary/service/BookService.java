@@ -13,7 +13,7 @@ public interface BookService<T extends Book> {
 
     List<T> findByField (String field);
 
-    List<T> findById(int id);
+    T findById(int id);
 
     void add(Book book);
 

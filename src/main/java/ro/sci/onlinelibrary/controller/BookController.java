@@ -15,6 +15,7 @@ public class BookController {
 
     @Autowired
     private BookService bookService;
+
     @Autowired
     private BookRepository bookRepository;
 
@@ -37,8 +38,8 @@ public class BookController {
     @RequestMapping(value = "/books/searchById", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView searchBookById(@RequestParam(value = "search", required = false, defaultValue = "0") Integer searchById) {
-        List books = bookService.findById(searchById);
-        return new ModelAndView("searchBookByIdView", "searchResultById", books);
+        Book book = bookService.findById(searchById);
+        return new ModelAndView("searchBookByIdView", "searchResultById", book);
     }
 
     //Ask submit new book
@@ -56,30 +57,44 @@ public class BookController {
         return "Book saved!";
     }
 
+    //Delete a book
 
+    @RequestMapping(value  = "/deleteBook/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public String deleteBook(Book book) {
+        bookRepository.delete(book.getId());
+        return "Book deleted";
+    }
 
-    //
-//    @RequestMapping(value = "/books/search/author", method = RequestMethod.GET)
+    //Ask for update a book
+    @GetMapping(value = "/updateBook/{id}")
+    public String updateBookForm(Model model) {
+        model.addAttribute("book", new Book());
+        return "updateBook";
+    }
+
+    //Update a book
+    @PostMapping(value = "/updateBook/{id}")
+    public String updateBookForm(@ModelAttribute Book book) {
+        Book updateBook = bookRepository.getById(book.getId());
+//        updateBook.setId(book.getId());
+//        updateBook.setTitle(book.getTitle());
+//        updateBook.setAuthor(book.getAuthor());
+//        updateBook.setPublishingHouse(book.getPublishingHouse());
+//        updateBook.setBookType(book.getBookType());
+//        updateBook.setBookLanguage(book.getBookLanguage());
+//        updateBook.setNrPages(book.getNrPages());
+//        updateBook.setIsbn(book.getIsbn());
+        bookRepository.update(updateBook);
+        return "Book updated!";
+    }
+
+//    @RequestMapping(value = "/comment", method = RequestMethod.POST)
 //    @ResponseBody
-//    public ModelAndView showBooksByAuthor(@RequestParam(value = "search", required = false, defaultValue = "") String authorSearch) {
-//        List books = bookService.findBookByAuthor(authorSearch);
-//        return new ModelAndView("authorView", "search", books);
-//
+//    public ModelAndView getComment() {
+//        Review review = new Review();
+//        return new ModelAndView("commentView", "comment", review);
 //    }
-
-//    @RequestMapping(value = "/addbook", method = RequestMethod.POST)
-//             public String addBook(@ModelAttribute("addBook") Book book,ModelMap model){
-//
-//        model.addAttribute("title",book.getTitle());
-//        model.addAttribute("author", book.getAuthor());
-//        model.addAttribute("publishingHouse", book.getPublishingHouse());
-//        model.addAttribute("bookType", book.getBookType());
-//        model.addAttribute("bookLanguage", book.getBookLanguage());
-//        model.addAttribute("nrPages", book.getNrPages());
-//        model.addAttribute("isbn", book.getIsbn());
-//
-//        return "result";
-//     }
 
 
 
