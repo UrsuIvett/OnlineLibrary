@@ -35,7 +35,7 @@ public class BookController {
         return new ModelAndView("bookSearchView", "searchResult", books);
     }
 
-    @RequestMapping(value = "/books/getById", method = RequestMethod.GET)
+    @RequestMapping(value = "/books/searchById", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView searchBookById(@RequestParam(value = "search", required = false, defaultValue = "0") Integer searchById) {
         Book book = bookService.findById(searchById);
@@ -75,17 +75,18 @@ public class BookController {
 
     //Update a book
     @PostMapping(value = "/updateBook/{id}")
-    public String updateBookForm(@ModelAttribute Book book) {
-        Book updateBook = bookRepository.getById(book.getId());
-//        updateBook.setId(book.getId());
-//        updateBook.setTitle(book.getTitle());
-//        updateBook.setAuthor(book.getAuthor());
-//        updateBook.setPublishingHouse(book.getPublishingHouse());
-//        updateBook.setBookType(book.getBookType());
-//        updateBook.setBookLanguage(book.getBookLanguage());
-//        updateBook.setNrPages(book.getNrPages());
-//        updateBook.setIsbn(book.getIsbn());
-        bookRepository.update(updateBook);
+    @RequestMapping
+    public String updateBookForm(@PathVariable("id") Integer id,@ModelAttribute Book book) {
+        Book updateBook = bookService.findById(id);
+        updateBook.setId(book.getId());
+        updateBook.setTitle(book.getTitle());
+        updateBook.setAuthor(book.getAuthor());
+        updateBook.setPublishingHouse(book.getPublishingHouse());
+        updateBook.setBookType(book.getBookType());
+        updateBook.setBookLanguage(book.getBookLanguage());
+        updateBook.setNrPages(book.getNrPages());
+        updateBook.setIsbn(book.getIsbn());
+        bookService.update(updateBook);
         return "Book updated!";
     }
 
@@ -96,6 +97,23 @@ public class BookController {
 //        return new ModelAndView("commentView", "comment", review);
 //    }
 
-
+//    @RequestMapping(value = "/rooms/{id}", method = RequestMethod.POST)
+//    public ModelAndView updateRoom(@PathVariable("id") Integer id, @ModelAttribute Room room) {
+//
+//        LOGGER.log(Level.INFO, "Updating room");
+//        Room updatedRoom = roomService.searchByRoomNumber(id);
+//
+//        updatedRoom.setRoomType(room.getRoomType());
+//        updatedRoom.setBedType(room.getBedType());
+//        updatedRoom.setBedNumber(room.getBedNumber());
+//        updatedRoom.setOceanView(room.isOceanView());
+//        updatedRoom.setAirConditioning(room.isAirConditioning());
+//        updatedRoom.setBalcony(room.isBalcony());
+//        updatedRoom.setPricePerNight(room.getPricePerNight());
+//
+//        roomService.update(updatedRoom);
+//
+//        return new ModelAndView("rooms", "rooms", roomService.getAll());
+//    }
 
 }
