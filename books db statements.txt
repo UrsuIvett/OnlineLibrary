@@ -1,1 +1,28 @@
-//to add
+/*CREATE table books(
+    id SERIAL PRIMARY KEY,
+    title varchar(50),
+    author varchar(50),
+    publishinghouse varchar(50),
+    booktype varchar(50),
+    booklanguage varchar(50),
+    nrpages integer,
+    isbn varchar(50)
+);
+
+INSERT into books (title, author, publishinghouse, booktype, booklanguage, nrpages, isbn) values
+('Urzeala tronurilor- Vol1', 'George R.R. Martin', 'Carturesti', 'FANTASY', 'ENGLISH', 350, 0100),
+('Urzeala tronurilor- Vol2', 'George R.R. Martin', 'Carturesti', 'FANTASY', 'ENGLISH', 370, 0101),
+('Urzeala tronurilor- Vol3', 'George R.R. Martin', 'Carturesti', 'FANTASY', 'ENGLISH', 370, 0102),
+('Urzeala tronurilor- Vol4', 'George R.R. Martin', 'Carturesti', 'FANTASY', 'ENGLISH', 450, 0103),
+('Urzeala tronurilor- Vol5', 'George R.R. Martin', 'Carturesti', 'FANTASY', 'ENGLISH', 440, 0104),
+('Fluturi- Vol1', 'Irina Binder', 'For you', 'DRAMA', 'ROMANIAN', 240, 0105),
+('Fluturi- Vol2', 'Irina Binder', 'For you', 'DRAMA', 'ROMANIAN', 250, 0106),
+('Fluturi- Vol3', 'Irina Binder', 'For you', 'DRAMA', 'ROMANIAN', 210, 0107),
+('Harry Potter- Vol1', 'J.K. Rowling', 'Arthur', 'FANTASY', 'ENGLISH', 560, 0118),
+('Harry Potter- Vol2', 'J.K. Rowling', 'Arthur', 'FANTASY', 'ENGLISH', 660, 0119),
+('Harry Potter- Vol3', 'J.K. Rowling', 'Arthur', 'FANTASY', 'ENGLISH', 860, 1020),
+('Harry Potter- Vol4', 'J.K. Rowling', 'Arthur', 'FANTASY', 'ENGLISH',966, 1021),
+('Harry Potter- Vol5', 'J.K. Rowling', 'Arthur', 'FANTASY', 'ENGLISH', 860, 1022),
+('Harry Potter- Vol6', 'J.K. Rowling', 'Arthur', 'FANTASY', 'ENGLISH', 560, 1023),
+('Harry Potter- Vol7', 'J.K. Rowling', 'Arthur', 'FANTASY', 'ENGLISH', 460, 1024)
+*/

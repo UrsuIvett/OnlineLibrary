@@ -15,9 +15,4 @@ public interface BookService<T extends Book> {
 
     T findById(int id);
 
-    void add(Book book);
-
-    void update(Book book);
-
-    void delete(int id);
 }

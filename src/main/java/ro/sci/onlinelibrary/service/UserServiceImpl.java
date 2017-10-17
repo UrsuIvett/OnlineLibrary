@@ -16,16 +16,17 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService<User> {
     @Autowired
-    private UserRepository<User> userRepository;
+    private UserRepository userRepository;
 
     public List<User> getAll() {
         return userRepository.getAll();
     }
 
     @Override
-    public List<User> findById(int id) {
+    public User findById(int id) {
         return userRepository.getById(id);
     }
+
 
     public List<User> findByField(String field) {
         String likeField = ("%" + field + "%").toLowerCase();

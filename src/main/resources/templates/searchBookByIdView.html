@@ -12,6 +12,7 @@
         <h2>Searched book is:</h2>
         <table class="table table-striped">
             <tr>
+                <th>Id</th>
                 <th>Author</th>
                 <th>Title</th>
                 <th>Category</th>
@@ -20,6 +21,7 @@
                 <th>isbn</th>
             </tr>
             <tr th:each="book: ${searchResultById}">
+                <td th:text="${book.id}">id</td>
                 <td th:text="${book.author}">author</td>
                 <td th:text="${book.title}">title</td>
                 <td th:text="${book.bookType}">bookType</td>

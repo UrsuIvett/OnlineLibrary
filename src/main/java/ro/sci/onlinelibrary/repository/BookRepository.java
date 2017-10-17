@@ -11,7 +11,7 @@ package ro.sci.onlinelibrary.repository;
 
 public interface BookRepository extends Repository<Book> {
 
-    @Select("SELECT * FROM books")
+    @Select("SELECT * FROM books ORDER by ID")
     List<Book> getAll();
 
     @Insert("INSERT INTO books(id,title,author,publishinghouse,booktype,booklanguage,nrpages,isbn) values(#{id},#{title},#{author},#{publishingHouse},#{bookType},#{bookLanguage},#{nrPages},#{isbn})")

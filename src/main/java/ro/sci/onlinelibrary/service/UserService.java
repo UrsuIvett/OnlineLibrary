@@ -11,7 +11,7 @@ public interface UserService<T extends User> {
 
     List<T> getAll();
 
-    List<T> findById(int id);
+    T findById(int id);
 
     List<T> findByField (String field);
 }

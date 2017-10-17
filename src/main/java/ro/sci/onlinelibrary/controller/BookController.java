@@ -20,7 +20,7 @@ public class BookController {
     private BookRepository bookRepository;
 
     //Show all books
-    @RequestMapping(value = "/books", method = RequestMethod.GET)
+    @GetMapping(value = "/books")
     @ResponseBody
     public ModelAndView getBooks() {
         List<Book> books = bookService.getAll();
@@ -28,14 +28,15 @@ public class BookController {
     }
 
     //Search books from repository
-    @RequestMapping(value = "/books/search", method = RequestMethod.GET)
+    @GetMapping(value = "/books/search")
     @ResponseBody
     public ModelAndView searchBooks(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
         List books = bookService.findByField(search);
         return new ModelAndView("bookSearchView", "searchResult", books);
     }
 
-    @RequestMapping(value = "/books/searchById", method = RequestMethod.GET)
+    //show book by id
+    @GetMapping(value = "/books/searchById")
     @ResponseBody
     public ModelAndView searchBookById(@RequestParam(value = "search", required = false, defaultValue = "0") Integer searchById) {
         Book book = bookService.findById(searchById);
@@ -74,21 +75,21 @@ public class BookController {
     }
 
     //Update a book
-    @PostMapping(value = "/updateBook/{id}")
-    @RequestMapping
-    public String updateBookForm(@PathVariable("id") Integer id,@ModelAttribute Book book) {
-        Book updateBook = bookService.findById(id);
-        updateBook.setId(book.getId());
-        updateBook.setTitle(book.getTitle());
-        updateBook.setAuthor(book.getAuthor());
-        updateBook.setPublishingHouse(book.getPublishingHouse());
-        updateBook.setBookType(book.getBookType());
-        updateBook.setBookLanguage(book.getBookLanguage());
-        updateBook.setNrPages(book.getNrPages());
-        updateBook.setIsbn(book.getIsbn());
-        bookService.update(updateBook);
-        return "Book updated!";
-    }
+//    @PostMapping(value = "/updateBook/{id}")
+//    @RequestMapping
+//    public String updateBookForm(@PathVariable("id") Integer id,@ModelAttribute Book book) {
+//        Book updateBook = bookService.findById(id);
+//        updateBook.setId(book.getId());
+//        updateBook.setTitle(book.getTitle());
+//        updateBook.setAuthor(book.getAuthor());
+//        updateBook.setPublishingHouse(book.getPublishingHouse());
+//        updateBook.setBookType(book.getBookType());
+//        updateBook.setBookLanguage(book.getBookLanguage());
+//        updateBook.setNrPages(book.getNrPages());
+//        updateBook.setIsbn(book.getIsbn());
+//        bookService.update(updateBook);
+//        return "Book updated!";
+//    }
 
 //    @RequestMapping(value = "/comment", method = RequestMethod.POST)
 //    @ResponseBody
