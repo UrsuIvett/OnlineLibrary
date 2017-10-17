@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Books</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="webjars/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    </link>
+</head>
+<body>
+<script src="http://code.jquery.com/jquery.js"></script>
+<script src="webjars/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<h1>Online Library</h1>
+<h2>Update a room</h2>
+<table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+        <th>Author</th>
+        <th>Title</th>
+        <th>Category</th>
+        <th>Language</th>
+        <th>Number of pages</th>
+        <th>isbn</th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="book : ${books}">
+        <tr>
+            <td th:text="${book.author}">author</td>
+            <td th:text="${book.title}">title</td>
+            <td th:text="${book.bookType}">bookType</td>
+            <td th:text="${book.bookLanguage}">Language</td>
+            <td th:text="${book.nrPages}">Number of Pages</td>
+            <td th:text="${book.isbn}">isbn</td>
+            <td><a th:href="@{/books/{id}(id=${book.id})}">Update</a></td>
+        </tr>
+    </th:block>
+    </tbody>
+</table>
+<div class="btn-group">
+    <a href="/rooms/submit" class="btn btn-info" role="button">Create New Book</a>
+</div>
+</body>
+</html>

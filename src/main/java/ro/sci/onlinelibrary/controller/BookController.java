@@ -74,12 +74,10 @@ public class BookController {
         return "updateBook";
     }
 
-    //Update a book
+//    //Update a book
 //    @PostMapping(value = "/updateBook/{id}")
-//    @RequestMapping
 //    public String updateBookForm(@PathVariable("id") Integer id,@ModelAttribute Book book) {
 //        Book updateBook = bookService.findById(id);
-//        updateBook.setId(book.getId());
 //        updateBook.setTitle(book.getTitle());
 //        updateBook.setAuthor(book.getAuthor());
 //        updateBook.setPublishingHouse(book.getPublishingHouse());
@@ -87,8 +85,8 @@ public class BookController {
 //        updateBook.setBookLanguage(book.getBookLanguage());
 //        updateBook.setNrPages(book.getNrPages());
 //        updateBook.setIsbn(book.getIsbn());
-//        bookService.update(updateBook);
-//        return "Book updated!";
+//        bookRepository.update(updateBook);
+//        return "updateBook";
 //    }
 
 //    @RequestMapping(value = "/comment", method = RequestMethod.POST)

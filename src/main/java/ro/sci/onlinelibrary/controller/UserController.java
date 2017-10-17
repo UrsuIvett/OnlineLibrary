@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.model.user.User;
 import ro.sci.onlinelibrary.repository.UserRepository;
 import ro.sci.onlinelibrary.service.UserService;
@@ -25,12 +24,14 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
+    //show all users
     @GetMapping(value = "/users")
     @ResponseBody
     public ModelAndView getUsers() {
         List<User> users = userService.getAll();
         return new ModelAndView("usersView", "users", users);
     }
+    //search users from repository
     @GetMapping(value = "/users/search")
     @ResponseBody
     public ModelAndView searchUsers(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
@@ -38,6 +39,7 @@ public class UserController {
         return new ModelAndView("userSearchView", "searchResult", users);
     }
 
+    //show user by id
     @GetMapping(value = "/users/searchById")
     @ResponseBody
     public ModelAndView searchUserById(@RequestParam(value = "search", required = false,defaultValue = "0") Integer searchById) {
