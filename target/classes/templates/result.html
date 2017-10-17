@@ -1,21 +1,38 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Online library</title>
+    <title>Submitting a book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-<h1>Book added</h1>
-<p th:text="'id: ' + ${book.id}" />
-<p th:text="'title: ' + ${book.title}" />
-<p th:text="'author: ' + ${book.author}" />
-<p th:text="'publishingHouse: ' + ${book.publishingHouse}" />
-<p th:text="'bookType: ' + ${book.bookType}" />
-<p th:text="'bookLanguage: ' + ${book.bookLanguage}" />
-<p th:text="'nrPages: ' + ${book.nrPages}" />
-<p th:text="'isbn: ' + ${book.isbn}" />
-
-
-<a href="/submit">Add another employee</a>
+<h1>Online library</h1>
+<h2>NEW BOOK DETAILS</h2>
+<table>
+    <thead>
+    <tr>
+        <th>BOOK ID </th>
+        <th>BOOK TITLE</th>
+        <th>BOOK AUTHOR</th>
+        <th>BOOK PUBLISHING HOUSE</th>
+        <th>BOOK CATEGORY</th>
+        <th>BOOK LANGUAGE</th>
+        <th>NUMBER OF PAGES</th>
+        <th>ISBN</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${book.id}">...</td>
+        <td th:text="${book.title}">...</td>
+        <td th:text="${book.author}">...</td>
+        <td th:text="${book.publishingHouse}">...</td>
+        <td th:text="${book.bookType}">...</td>
+        <td th:text="${book.bookLanguage}">...</td>
+        <td th:text="${book.nrPages}">...</td>
+        <td th:text="${book.isbn}">...</td>
+    </tr>
+    </tbody>
+</table>
+<a href="/saveBook">Submit another book</a>
 </body>
 </html>
