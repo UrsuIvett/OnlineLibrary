@@ -12,6 +12,7 @@ public class Book {
     private BookLanguage bookLanguage;
     private int nrPages;
     private String isbn;
+    private boolean onLoan = false;
 
     public Book(){}
 
@@ -78,5 +79,8 @@ public class Book {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
+
+    public boolean isOnLoan(boolean b) {return onLoan;}
+    public void setOnLoan (boolean onLoan) {this.onLoan = onLoan;}
 
 }

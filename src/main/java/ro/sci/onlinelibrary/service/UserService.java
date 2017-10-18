@@ -23,8 +23,6 @@ public interface UserService<T extends User> {
 
     T searchById(Integer bookId);
 
-    T validateUser(Login login);
-
     void setUserRepository(UserRepository userRepository);
 
 }

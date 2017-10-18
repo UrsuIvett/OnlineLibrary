@@ -10,6 +10,7 @@ import ro.sci.onlinelibrary.model.user.User;
 import ro.sci.onlinelibrary.repository.UserRepository;
 import ro.sci.onlinelibrary.service.UserService;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
@@ -34,22 +35,11 @@ public class LoginController {
 
     @PostMapping(value = "/login")
     @ResponseBody
-    public ModelAndView loginProcess(@ModelAttribute("login") Login login) {
-        ModelAndView mav = null;
-        User user = userService.validateUser(login);
-        if (user.getPassword() != null && user.getUsername() != null) {
-            mav = new ModelAndView("welcome");
-            mav.addObject("user", user);
-        } else {
-            mav = new ModelAndView("login");
-            mav.addObject("message", "Username or Password is wrong!!");
+    public String loginForm(@ModelAttribute Login login) {
+            LOGGER.log(Level.INFO, "Login successful");
+            return "Login successful";
         }
-        return mav;
-    }
 
 }
-
-
-
 
 

@@ -12,5 +12,4 @@ public interface Repository<T> {
         void delete(T t);
         void update(T t);
         T searchById(Integer id);
-        T validateUser(T t);
 }

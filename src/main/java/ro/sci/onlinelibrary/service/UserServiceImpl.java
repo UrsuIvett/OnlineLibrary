@@ -52,16 +52,7 @@ import java.util.logging.Logger;
         public User searchById(Integer userId) {
             User user = userRepository.searchById(userId);
             return user;
-        }
-
-    @Override
-    public User validateUser(login) {
-        User user = userRepository.validateUser(login);
-        return user;
-
-
     }
-
     @Override
         public void setUserRepository(UserRepository userRepository) {
         }

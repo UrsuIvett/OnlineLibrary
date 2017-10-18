@@ -30,7 +30,4 @@ public interface UserRepository extends Repository<User> {
     void create (User user);
 
     void update (User user);
-
-    @Validated
-    void validateUser(Login login);
 }

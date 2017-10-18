@@ -1,16 +1,27 @@
-<!DOCTYPE html>
-<html>
+
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
     <title>Welcome</title>
 </head>
-<body>
-<table align="center">
+<body style="background-color:powderblue;">
+<table>
     <tr>
-        <td><a href="login.html">Login</a>
-        </td>
-        <td><a href="register">Register</a>
-        </td>
+        <td>WELCOME TO THE ONLINE LIBRARY!</td>
+    </tr>
+    <tr>
+        <td><a href="/books"> Books </a></td>
+    </tr>
+    <tr>
+        <td><a href="/books/search"> Search for books </a></td>
+    </tr>
+    <tr>
+        <td><a href="/register"> Register </a></td>
+    </tr>
+
+    <tr>
+        <td><a href="/login"> Login </a></td>
     </tr>
 </table>
 </body>
