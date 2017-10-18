@@ -20,7 +20,7 @@ public interface UserRepository extends Repository<User> {
     @Select("SELECT * FROM users WHERE LOWER(firstName) LIKE #{field} or LOWER(lastName) LIKE #{field} or LOWER (email) LIKE #{field}")
     List<User> getByField(@Param("field") String field);
 
-    @Insert("INSERT INTO users(id,firstname,lastname,phone,email) values(#{id},#{firstName},#{lastName},#{phone},#{email})")
+    @Insert("INSERT INTO users(id,firstname,lastname,phone,email,paid) values(#{id},#{firstName},#{lastName},#{phone},#{email},#{paid})")
     void add (User user);
 
     @Delete("DELETE FROM users WHERE id=#{userId}")

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Get review</title>
+</head>
+<body>
+<table>
+    <th:block th:each = "review : ${reviews}">
+        <tr>
+            <td th:text="${review.id}">...</td>
+            <td th:text="${review.comment}">...</td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

@@ -9,6 +9,7 @@ public class User {
     private String lastName;
     private String phone;
     private String email;
+    private boolean paid;
 
     public int getId() {
         return id;
@@ -48,5 +49,13 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }
