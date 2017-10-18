@@ -1,5 +1,6 @@
 package ro.sci.onlinelibrary.service;
 
+import ro.sci.onlinelibrary.model.user.Login;
 import ro.sci.onlinelibrary.model.user.User;
 import ro.sci.onlinelibrary.repository.UserRepository;
 
@@ -21,6 +22,8 @@ public interface UserService<T extends User> {
     void update (User user);
 
     T searchById(Integer bookId);
+
+    T validateUser(Login login);
 
     void setUserRepository(UserRepository userRepository);
 

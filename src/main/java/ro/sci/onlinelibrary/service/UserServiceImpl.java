@@ -2,6 +2,7 @@ package ro.sci.onlinelibrary.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ro.sci.onlinelibrary.model.user.Login;
 import ro.sci.onlinelibrary.model.user.User;
 import ro.sci.onlinelibrary.repository.UserRepository;
 import java.util.ArrayList;
@@ -53,7 +54,14 @@ import java.util.logging.Logger;
             return user;
         }
 
-        @Override
+    @Override
+    public User validateUser(login) {
+        User user = userRepository.validateUser(login);
+        return user;
+
+    }
+
+    @Override
         public void setUserRepository(UserRepository userRepository) {
         }
 

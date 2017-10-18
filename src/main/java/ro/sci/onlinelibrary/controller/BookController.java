@@ -63,7 +63,7 @@ public class BookController {
     @PostMapping(value = "/newBook")
     @ResponseBody
     public String bookForm(@ModelAttribute Book book) {
-        LOGGER.log(Level.INFO, "Added a new book");
+        LOGGER.log(Level.INFO, "Adding a new book");
         bookRepository.add(book);
         return "Book saved!";
     }
