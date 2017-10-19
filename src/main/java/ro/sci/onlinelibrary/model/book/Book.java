@@ -15,6 +15,10 @@ public class Book {
 
     public Book(){}
 
+    public Book(String title) {
+        this.title = title;
+    }
+
     public int getId() {
         return id;
     }

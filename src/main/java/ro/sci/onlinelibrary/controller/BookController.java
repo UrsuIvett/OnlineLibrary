@@ -34,7 +34,7 @@ public class BookController {
         List books = bookService.findByField(search);
         return new ModelAndView("bookSearchView", "searchResult", books);
     }
-
+    //todo exception id
     //show book by id
     @GetMapping(value = "/books/searchById")
     @ResponseBody
@@ -68,51 +68,25 @@ public class BookController {
     }
 
     //Ask for update a book
-    @GetMapping(value = "/updateBook/{id}")
+    @GetMapping(value = "/updateBook/")
     public String updateBookForm(Model model) {
         model.addAttribute("book", new Book());
         return "updateBook";
     }
 
-//    //Update a book
-//    @PostMapping(value = "/updateBook/{id}")
-//    public String updateBookForm(@PathVariable("id") Integer id,@ModelAttribute Book book) {
-//        Book updateBook = bookService.findById(id);
-//        updateBook.setTitle(book.getTitle());
-//        updateBook.setAuthor(book.getAuthor());
-//        updateBook.setPublishingHouse(book.getPublishingHouse());
-//        updateBook.setBookType(book.getBookType());
-//        updateBook.setBookLanguage(book.getBookLanguage());
-//        updateBook.setNrPages(book.getNrPages());
-//        updateBook.setIsbn(book.getIsbn());
-//        bookRepository.update(updateBook);
-//        return "updateBook";
-//    }
-
-//    @RequestMapping(value = "/comment", method = RequestMethod.POST)
-//    @ResponseBody
-//    public ModelAndView getComment() {
-//        Review review = new Review();
-//        return new ModelAndView("commentView", "comment", review);
-//    }
-
-//    @RequestMapping(value = "/rooms/{id}", method = RequestMethod.POST)
-//    public ModelAndView updateRoom(@PathVariable("id") Integer id, @ModelAttribute Room room) {
-//
-//        LOGGER.log(Level.INFO, "Updating room");
-//        Room updatedRoom = roomService.searchByRoomNumber(id);
-//
-//        updatedRoom.setRoomType(room.getRoomType());
-//        updatedRoom.setBedType(room.getBedType());
-//        updatedRoom.setBedNumber(room.getBedNumber());
-//        updatedRoom.setOceanView(room.isOceanView());
-//        updatedRoom.setAirConditioning(room.isAirConditioning());
-//        updatedRoom.setBalcony(room.isBalcony());
-//        updatedRoom.setPricePerNight(room.getPricePerNight());
-//
-//        roomService.update(updatedRoom);
-//
-//        return new ModelAndView("rooms", "rooms", roomService.getAll());
-//    }
+    //Update a book
+    @RequestMapping(value = "/doUpdate/", method = RequestMethod.POST)
+    public String updateBookForm(@ModelAttribute Book book) {
+        Book updateBook = bookService.findById(book.getId());
+        updateBook.setTitle(book.getTitle());
+        updateBook.setAuthor(book.getAuthor());
+        updateBook.setPublishingHouse(book.getPublishingHouse());
+        updateBook.setBookType(book.getBookType());
+        updateBook.setBookLanguage(book.getBookLanguage());
+        updateBook.setNrPages(book.getNrPages());
+        updateBook.setIsbn(book.getIsbn());
+        bookRepository.update(updateBook);
+        return "updateBook";
+    }
 
 }
