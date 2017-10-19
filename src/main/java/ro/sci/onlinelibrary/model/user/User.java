@@ -11,6 +11,7 @@ public class User {
     private String email;
     private String username;
     private String password;
+    private boolean paid;
 
     public User(){
     }
@@ -67,5 +68,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isPaid() {
+        return paid;
+    }
+
+    public void setPaid(boolean paid) {
+        this.paid = paid;
     }
 }

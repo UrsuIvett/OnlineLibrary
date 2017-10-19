@@ -70,7 +70,7 @@ public class BookController {
 
     // Delete book
 
-    @RequestMapping(value  = "/deleteBook/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteBook/{id}", method = RequestMethod.GET)
     @ResponseBody
     public String deleteBook(Book book) {
         LOGGER.log(Level.INFO, "Deleting book");
@@ -80,20 +80,28 @@ public class BookController {
 
     // Update book
 
-    @PostMapping (value = "/updateBook/{id}")
+    @PostMapping(value = "/updateBook/{id}")
     @ResponseBody
     public String updateBookForm(@ModelAttribute Book book) {
         Book updateBook = bookRepository.searchById(book.getId());
-        // updateBook.setId(book.getId());
-        updateBook.setTitle(book.getTitle());
-        updateBook.setAuthor(book.getAuthor());
-        updateBook.setPublishingHouse(book.getPublishingHouse());
-        updateBook.setBookType(book.getBookType());
-        updateBook.setBookLanguage(book.getBookLanguage());
-        updateBook.setNrPages(book.getNrPages());
-        updateBook.setIsbn(book.getIsbn());
+//        updateBook.setId(book.getId());
+//        updateBook.setTitle(book.getTitle());
+//        updateBook.setAuthor(book.getAuthor());
+//        updateBook.setPublishingHouse(book.getPublishingHouse());
+//        updateBook.setBookType(book.getBookType());
+//        updateBook.setBookLanguage(book.getBookLanguage());
+//        updateBook.setNrPages(book.getNrPages());
+//        updateBook.setIsbn(book.getIsbn());
         LOGGER.log(Level.INFO, "Updating book");
         bookRepository.update(updateBook);
         return "Book updated!";
     }
+
+//    @RequestMapping(value = "/comment", method = RequestMethod.POST)
+//    @ResponseBody
+//    public ModelAndView getComment() {
+//        Review_1 review = new Review_1();
+//        return new ModelAndView("commentView", "comment", review);
+//
+//    }
 }
