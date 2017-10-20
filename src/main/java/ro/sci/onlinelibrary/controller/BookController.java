@@ -85,6 +85,8 @@ public class BookController {
         return "updateBook";
     }
 
+
+
     //Update a book
     @RequestMapping(value = "/bookIsUpdated/", method = RequestMethod.POST)
     public String updateBookForm(@ModelAttribute Book book) {
