@@ -30,6 +30,7 @@ public class BookControllerTest {
     @Test
     public void getBooks() throws Exception {
         //given
+        Book book1 = new Book();
         List<Book> bookList = Arrays.asList(new Book("Cei trei iezi"), new Book("Cei trei purcelusi"));
 
         when(bookService.getAll()).thenReturn(bookList);
@@ -37,12 +38,11 @@ public class BookControllerTest {
         //when
         ModelAndView modelAndView = bookController.getBooks();
 
-        //then0
+        //then
         List<Book> resultBooks = (List<Book>) modelAndView.getModel().get("books");
         assertNotNull(resultBooks);
         assertEquals(2, resultBooks.size());
         assertEquals("Cei trei iezi", resultBooks.get(0).getTitle());
         assertEquals("Cei trei purcelusi", resultBooks.get(1).getTitle());
     }
-
 }

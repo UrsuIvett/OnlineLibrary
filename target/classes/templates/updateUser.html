@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Updating a book</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Online Library</h1>
+<h2>UPDATE USER FORM</h2>
+<form th:object="${user}" th:action="@{/userIsUpdated/}" method="post">
+    <p>User id: <input type="number" th:field="*{id}" /></p>
+    <p>User first name: <input type="text" th:field="*{firstName}" /></p>
+    <p>User last name: <input type="text" th:field="*{lastName}" /></p>
+    <p>User phone: <input type="text" th:field="*{phone}" /></p>
+    <p>User email: <input type="text" th:field="*{email}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>

@@ -34,7 +34,7 @@ public class BookController {
         List books = bookService.findByField(search);
         return new ModelAndView("bookSearchView", "searchResult", books);
     }
-    //todo exception id
+
     //show book by id
     @GetMapping(value = "/books/searchById")
     @ResponseBody
@@ -75,7 +75,7 @@ public class BookController {
     }
 
     //Update a book
-    @RequestMapping(value = "/doUpdate/", method = RequestMethod.POST)
+    @RequestMapping(value = "/bookIsUpdated/", method = RequestMethod.POST)
     public String updateBookForm(@ModelAttribute Book book) {
         Book updateBook = bookService.findById(book.getId());
         updateBook.setTitle(book.getTitle());

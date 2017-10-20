@@ -1,9 +1,6 @@
 package ro.sci.onlinelibrary.repository;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import ro.sci.onlinelibrary.model.user.User;
 
 import java.util.List;
@@ -24,6 +21,7 @@ public interface UserRepository extends Repository<User> {
     @Delete("DELETE FROM users WHERE id=#{userId}")
     void delete (int userId);
 
+    @Update("UPDATE users SET firstname=#{firstName}, lastname=#{lastName}, phone=#{phone}, email=#{email} WHERE id=#{id}")
     void update (User user);
 
     @Select("SELECT * FROM users WHERE LOWER(firstname) LIKE #{field} or LOWER(lastname) LIKE #{field}")
