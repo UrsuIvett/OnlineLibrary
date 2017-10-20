@@ -79,29 +79,50 @@ public class BookController {
     }
 
     // Update book
-
-    @PostMapping(value = "/updateBook/{id}")
-    @ResponseBody
-    public String updateBookForm(@ModelAttribute Book book) {
-        Book updateBook = bookRepository.searchById(book.getId());
-//        updateBook.setId(book.getId());
-//        updateBook.setTitle(book.getTitle());
-//        updateBook.setAuthor(book.getAuthor());
-//        updateBook.setPublishingHouse(book.getPublishingHouse());
-//        updateBook.setBookType(book.getBookType());
-//        updateBook.setBookLanguage(book.getBookLanguage());
-//        updateBook.setNrPages(book.getNrPages());
-//        updateBook.setIsbn(book.getIsbn());
-        LOGGER.log(Level.INFO, "Updating book");
-        bookRepository.update(updateBook);
-        return "Book updated!";
+    @GetMapping(value = "/updateBook/")
+    public String updateBookForm(Model model) {
+        model.addAttribute("book", new Book());
+        return "updateBook";
     }
 
-//    @RequestMapping(value = "/comment", method = RequestMethod.POST)
+    //Update a book
+    @RequestMapping(value = "/bookIsUpdated/", method = RequestMethod.POST)
+    public String updateBookForm(@ModelAttribute Book book) {
+        Book updateBook = bookService.searchById(book.getId());
+        updateBook.setTitle(book.getTitle());
+        updateBook.setAuthor(book.getAuthor());
+        updateBook.setPublishingHouse(book.getPublishingHouse());
+        updateBook.setBookType(book.getBookType());
+        updateBook.setBookLanguage(book.getBookLanguage());
+        updateBook.setNrPages(book.getNrPages());
+        updateBook.setIsbn(book.getIsbn());
+        bookRepository.update(updateBook);
+        return "updateBook";
+    }
+
+
+//    @PostMapping(value = "/updateBook/{id}")
 //    @ResponseBody
-//    public ModelAndView getComment() {
-//        Review_1 review = new Review_1();
-//        return new ModelAndView("commentView", "comment", review);
-//
+//    public String updateBookForm(@ModelAttribute Book book) {
+//        Book updateBook = bookRepository.searchById(book.getId());
+////        updateBook.setId(book.getId());
+////        updateBook.setTitle(book.getTitle());
+////        updateBook.setAuthor(book.getAuthor());
+////        updateBook.setPublishingHouse(book.getPublishingHouse());
+////        updateBook.setBookType(book.getBookType());
+////        updateBook.setBookLanguage(book.getBookLanguage());
+////        updateBook.setNrPages(book.getNrPages());
+////        updateBook.setIsbn(book.getIsbn());
+//        LOGGER.log(Level.INFO, "Updating book");
+//        bookRepository.update(updateBook);
+//        return "Book updated!";
 //    }
+//
+////    @RequestMapping(value = "/comment", method = RequestMethod.POST)
+////    @ResponseBody
+////    public ModelAndView getComment() {
+////        Review_1 review = new Review_1();
+////        return new ModelAndView("commentView", "comment", review);
+////
+////    }
 }

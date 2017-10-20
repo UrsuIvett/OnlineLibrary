@@ -1,9 +1,6 @@
 package ro.sci.onlinelibrary.repository;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.validation.annotation.Validated;
 import ro.sci.onlinelibrary.model.user.Login;
 import ro.sci.onlinelibrary.model.user.User;
@@ -29,5 +26,6 @@ public interface UserRepository extends Repository<User> {
     @Insert("INSERT INTO accountscreated(firstname,lastname,phone,email,username,password) values(#{firstName},#{lastName},#{phone},#{email}, #{username}, #{password})")
     void create (User user);
 
+    @Update("UPDATE users SET firstname=#{firstName}, lastname=#{lastName}, phone=#{phone}, email=#{email} WHERE id=#{id}")
     void update (User user);
 }
