@@ -11,9 +11,9 @@ import java.util.List;
  */
 public interface ReviewRepository extends Repository<Review> {
 
-    @Select("SELECT * FROM review where book_id=#{bookId}")
+    @Select("SELECT * FROM review where bookid=#{bookId}")
     List<Review> getAll(int bookId);
 
-    @Insert("INSERT INTO review(id,comment,book_id) values(#{id},#{comment},#{bookId})")
+    @Insert("INSERT INTO review(id,comment,bookid) values(#{id},#{comment},#{bookId})")
     void add (Review review);
 }
