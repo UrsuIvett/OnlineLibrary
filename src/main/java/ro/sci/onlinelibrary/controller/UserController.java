@@ -70,4 +70,23 @@ public class UserController {
         userRepository.delete(user.getId());
         return "User deleted";
     }
+
+    //Ask for update a user
+    @GetMapping(value = "/updateUser/")
+    public String updateUserForm(Model model) {
+        model.addAttribute("user", new User());
+        return "updateUser";
+    }
+
+    //Update a user
+    @RequestMapping(value = "/userIsUpdated/", method = RequestMethod.POST)
+    public String updateUserForm(@ModelAttribute User user) {
+        User updateUser = userService.searchById(user.getId());
+        updateUser.setFirstName(user.getFirstName());
+        updateUser.setLastName(user.getLastName());
+        updateUser.setEmail(user.getEmail());
+        updateUser.setPhone(user.getPhone());
+        userRepository.update(updateUser);
+        return "updateUser";
+    }
 }

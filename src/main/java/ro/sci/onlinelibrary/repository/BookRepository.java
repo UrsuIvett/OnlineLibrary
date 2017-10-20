@@ -20,7 +20,7 @@ public interface BookRepository extends Repository<Book> {
     @Delete("DELETE FROM books WHERE id=#{bookId}")
     void delete (int bookId);
 
-    @Update("UPDATE books SET title=#{title}, author=#{author}, publishinghouse=#{publishingHouse}, booktype=#{bookType}, booklanguage=#{bookLanguage}, nrpages=#{nrPages}, isbn=#{isbn} WHERE id=#{bookId}")
+    @Update("UPDATE books SET title=#{title}, author=#{author}, publishinghouse=#{publishingHouse}, booktype=#{bookType}, booklanguage=#{bookLanguage}, nrpages=#{nrPages}, isbn=#{isbn} WHERE id=#{id}")
     void update (Book book);
 
     @Select("SELECT * FROM books WHERE LOWER(author) LIKE #{field} or LOWER(title) LIKE #{field} or LOWER (publishingHouse) LIKE #{field}")
