@@ -3,7 +3,7 @@
 <head>
     <title>Show all books</title>
 </head>
-<body>
+<body bgcolor="#ccff99">
 <table>
     <th:block th:each = "book : ${books}">
         <tr>
@@ -15,9 +15,8 @@
             <td th:text="${book.bookLanguage}">...</td>
             <td th:text="${book.nrPages}">...</td>
             <td th:text="${book.isbn}">...</td>
-             <script> var id= '${book.id}'; </script>
-            <td><a href="/books/review/{id}"> View comments </a></td>
-            <td><a href="/books/newReview"> Add a comment </a></td>
+            <td><a th:href="@{/books/review/{id}(id=${book.id})}"> View comments </a></td>
+            <td><a th:href="@{/books/newReview}"> Add a comment </a></td>
         </tr>
     </th:block>
 </table>

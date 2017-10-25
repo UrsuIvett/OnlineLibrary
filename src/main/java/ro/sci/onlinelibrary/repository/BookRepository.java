@@ -11,10 +11,10 @@ package ro.sci.onlinelibrary.repository;
 
 public interface BookRepository extends Repository<Book> {
 
-    @Select("SELECT * FROM books")
+    @Select("SELECT * FROM books order by id")
     List<Book> getAll();
 
-    @Insert("INSERT INTO books(id,title,author,publishinghouse,booktype,booklanguage,nrpages,isbn) values(#{id},#{title},#{author},#{publishingHouse},#{bookType},#{bookLanguage},#{nrPages},#{isbn})")
+    @Insert("INSERT INTO books(title,author,publishinghouse,booktype,booklanguage,nrpages,isbn) values(#{title},#{author},#{publishingHouse},#{bookType},#{bookLanguage},#{nrPages},#{isbn})")
     void add (Book book);
 
     @Delete("DELETE FROM books WHERE id=#{bookId}")

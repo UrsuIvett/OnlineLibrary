@@ -56,7 +56,7 @@ public class UserController {
     }
 
 
-    //Delete a user
+    //Delete a user- trebuie sa schimbam cu post
 
     @RequestMapping(value  = "/deleteUser/{id}", method = RequestMethod.GET)
     @ResponseBody

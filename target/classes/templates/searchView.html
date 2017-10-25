@@ -3,8 +3,8 @@
 <head lang="en">
     <title>Searching books</title>
 </head>
-<body>
-<h1>Online library</h1>
+<body bgcolor="#ccff99">
+<h1>ONLINE LIBRARY</h1>
 <h2>Searching books</h2>
 <form th:object="${book}" th:action="@{/books/search}" method="get">
     <input type="text" name="searchField" id="searchField" th:value="${searchField}" />
