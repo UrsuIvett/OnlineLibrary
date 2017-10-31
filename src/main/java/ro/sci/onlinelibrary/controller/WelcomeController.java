@@ -20,7 +20,18 @@ public class WelcomeController {
     private BookRepository bookRepository;
 
     @GetMapping(value = "/home")
-    public String bookForm(Model model) {
+    public String homeForm(Model model) {
         return "home";
     }
+
+    @GetMapping(value = "/homeBooks")
+    public String homeBook(Model model) {
+        return "homeBooks";
+    }
+
+    @GetMapping(value = "/homeUsers")
+    public String homeUser(Model model) {
+        return "homeUsers";
+    }
+
 }

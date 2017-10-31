@@ -1,8 +1,14 @@
 package ro.sci.onlinelibrary.model.book;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
+import javax.persistence.Entity;
+
 /**
  * Created by Ivett on 14-Sep-17.
  */
+
+@Entity
 public class Book {
     private int id;
     private String title;

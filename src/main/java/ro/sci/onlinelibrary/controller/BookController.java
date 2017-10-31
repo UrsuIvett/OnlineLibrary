@@ -1,5 +1,8 @@
 package ro.sci.onlinelibrary.controller;
 
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,8 +13,13 @@ import ro.sci.onlinelibrary.repository.BookRepository;
 import ro.sci.onlinelibrary.service.BookService;
 import java.util.List;
 
+
+
+
 @Controller
 public class BookController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger("BookController");
 
     @Autowired
     private BookService bookService;
@@ -31,7 +39,6 @@ public class BookController {
     @ResponseBody
     public ModelAndView searchBooks(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
         List books = bookService.findByField(search);
-
         return new ModelAndView("searchView", "searchResult", books);
     }
 
@@ -40,6 +47,7 @@ public class BookController {
     public String bookForm(Model model) {
         model.addAttribute("book", new Book());
         return "submit";
+        //LOGGER.info("jfijr");
     }
 
     //Submit new book
@@ -48,6 +56,7 @@ public class BookController {
     public String bookForm(@ModelAttribute Book book) {
         bookRepository.add(book);
         return "Book saved!";
+
     }
 
     //Delete a book
@@ -58,6 +67,7 @@ public class BookController {
         bookRepository.delete(book.getId());
         return "Book deleted";
     }
+
 
     //Ask for update a book
     @GetMapping(value = "/updateBook/{id}")
@@ -70,7 +80,28 @@ public class BookController {
     @PostMapping(value = "/updateBook/{id}")
     public String updateBookForm(@ModelAttribute Book book) {
         Book updateBook = bookRepository.searchById(book.getId());
-//        updateBook.setId(book.getId());
+        updateBook.setTitle(book.getTitle());
+        updateBook.setAuthor(book.getAuthor());
+        updateBook.setPublishingHouse(book.getPublishingHouse());
+        updateBook.setBookType(book.getBookType());
+        updateBook.setBookLanguage(book.getBookLanguage());
+        updateBook.setNrPages(book.getNrPages());
+        updateBook.setIsbn(book.getIsbn());
+        bookRepository.update(updateBook);
+        return "Book updated!";
+    }
+
+//    //Ask for update a book
+//    @GetMapping(value = "/updateBook/{id}")
+//    public String updateBookForm(Model model) {
+//        model.addAttribute("book", new Book());
+//        return "updateBook";
+//    }
+//
+//    //Update a book
+//    @RequestMapping(value = "/updateBook/{id}", method = RequestMethod.POST)
+//    public String updateBookForm(@ModelAttribute Book book) {
+//        Book updateBook = bookService.searchById(book.getId());
 //        updateBook.setTitle(book.getTitle());
 //        updateBook.setAuthor(book.getAuthor());
 //        updateBook.setPublishingHouse(book.getPublishingHouse());
@@ -78,17 +109,7 @@ public class BookController {
 //        updateBook.setBookLanguage(book.getBookLanguage());
 //        updateBook.setNrPages(book.getNrPages());
 //        updateBook.setIsbn(book.getIsbn());
-        bookRepository.update(updateBook);
-        return "Book updated!";
-    }
-
-//    @RequestMapping(value = "/comment", method = RequestMethod.POST)
-//    @ResponseBody
-//    public ModelAndView getComment() {
-//        Review review = new Review();
-//        return new ModelAndView("commentView", "comment", review);
+//        bookRepository.update(updateBook);
+//        return "updateBook";
 //    }
-
-
-
 }

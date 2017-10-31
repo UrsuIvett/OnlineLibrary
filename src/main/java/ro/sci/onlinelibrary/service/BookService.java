@@ -21,7 +21,7 @@ public interface BookService<T extends Book> {
 
     void update (Book book);
 
-    T searchById(Integer bookId);
+    T searchById(int bookId);
 
     void setBookRepository(BookRepository bookRepository);
 }

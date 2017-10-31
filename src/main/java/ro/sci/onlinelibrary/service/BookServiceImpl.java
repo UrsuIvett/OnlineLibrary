@@ -46,20 +46,20 @@ public class BookServiceImpl implements BookService<Book> {
 
     @Override
     public void update(Book book) {
-        List<Book> books = bookRepository.getAll();
-        boolean existingId=false;
-        for (Book savedBook: books) {
-            if (savedBook.getId()==book.getId()) {
-                existingId=true;
-            }
-        }
-        if (existingId=false) {
-            throw new RuntimeException("exception at runtime"); }
+//        List<Book> books = bookRepository.getAll();
+//        boolean existingId=false;
+//        for (Book savedBook: books) {
+//            if (savedBook.getId()==book.getId()) {
+//                existingId=true;
+//            }
+//        }
+//        if (existingId=false) {
+//            throw new RuntimeException("exception at runtime"); }
         this.bookRepository.update(book);
     }
 
     @Override
-    public Book searchById(Integer bookId) {
+    public Book searchById(int bookId) {
         Book book = this.bookRepository.searchById(bookId);
         return book;
     }

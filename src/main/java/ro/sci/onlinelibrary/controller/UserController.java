@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.model.user.User;
 import ro.sci.onlinelibrary.repository.UserRepository;
 import ro.sci.onlinelibrary.service.UserService;

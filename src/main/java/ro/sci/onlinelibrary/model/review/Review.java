@@ -1,8 +1,12 @@
 package ro.sci.onlinelibrary.model.review;
 
+import javax.persistence.Entity;
+
 /**
  * Created by Ivett on 14-Sep-17.
  */
+
+@Entity
 public class Review {
     private int id;
     private String comment;
