@@ -1,5 +1,7 @@
 package ro.sci.onlinelibrary.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ import java.util.List;
 
 @Controller
 public class UserController {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger("UserController");
 
     @Autowired
     private UserService userService;
@@ -51,6 +55,7 @@ public class UserController {
     @ResponseBody
     public String userForm(@ModelAttribute User user) {
         userRepository.add(user);
+        LOGGER.info("New user was added to Database, with following email: "+user.getEmail());
         return "User saved!";
     }
 
@@ -61,6 +66,7 @@ public class UserController {
     @ResponseBody
     public String deleteUser(User user) {
         userRepository.delete(user.getId());
+        LOGGER.info("New user was deleted from Database, with following email: "+user.getEmail());
         return "User deleted";
     }
 }

@@ -39,15 +39,6 @@ public class ReviewController {
         reviewRepository.add(review);
         return "Comment saved!";
     }
-//
-//    //Delete a book
-//
-//    @RequestMapping(value  = "/review/{id}", method = RequestMethod.GET)
-//    @ResponseBody
-//    public String showReview(Book book) {
-//        bookRepository.delete(book.getId());
-//        return "Book deleted";
-//    }
 
     @RequestMapping(value = "/books/review/{id}", method = RequestMethod.GET)
     @ResponseBody

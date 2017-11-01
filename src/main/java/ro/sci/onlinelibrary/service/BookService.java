@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface BookService<T extends Book> {
 
-    List<T> findAll ();
+    List<T> getAll();
 
     List<T> findByField (String field);
 

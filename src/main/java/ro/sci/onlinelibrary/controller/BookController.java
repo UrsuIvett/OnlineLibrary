@@ -30,7 +30,7 @@ public class BookController {
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     @ResponseBody
     public ModelAndView getBooks() {
-        List<Book> books = bookService.findAll();
+        List<Book> books = bookService.getAll();
         return new ModelAndView("bookView", "books", books);
     }
 
@@ -47,7 +47,6 @@ public class BookController {
     public String bookForm(Model model) {
         model.addAttribute("book", new Book());
         return "submit";
-        //LOGGER.info("jfijr");
     }
 
     //Submit new book
@@ -55,6 +54,7 @@ public class BookController {
     @ResponseBody
     public String bookForm(@ModelAttribute Book book) {
         bookRepository.add(book);
+        LOGGER.info("New book was added to Database, with following id: "+book.getId());
         return "Book saved!";
 
     }
@@ -65,6 +65,7 @@ public class BookController {
     @ResponseBody
     public String deleteBook(Book book) {
         bookRepository.delete(book.getId());
+        LOGGER.info("New book was deleted from Database, with following id: "+book.getId());
         return "Book deleted";
     }
 
@@ -88,6 +89,7 @@ public class BookController {
         updateBook.setNrPages(book.getNrPages());
         updateBook.setIsbn(book.getIsbn());
         bookRepository.update(updateBook);
+        LOGGER.info("A book was updated with following id: "+updateBook.getId());
         return "Book updated!";
     }
 
