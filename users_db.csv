@@ -1,0 +1,14 @@
+id,firstname,lastname,phone,email,paid
+1,George,Popescu,0361700112,george.popescu@yahoo.com,t
+2,George,Marin,0361711112,george.marin@gmail.com,t
+3,Maria,Enescu,0361513412,maria.enescu@gmail.com,f
+4,Louis,Griffin,0361663412,louis.griffin@gmail.com,f
+5,Peter,Griffin,0361513512,peter.griffin@yahoo.com,t
+6,Peter,Griffin,0361434323,peter.griffin15@gmail.com,t
+7,Stewie,Griffin,0361433323,stewie.griffin@gmail.com,t
+8,Stewie,Griffin,0364929212,griffin@gmail.com,f
+10,Adam,Smith,0364263456,adam.smith@gmail.com,f
+9,Bill,Kill,0364263455,killbill@yahoo.com,f
+11,Will,Smith,0361513422,will.smith@gmail.com,t
+12,Julie,Smith,0361513492,julie.smith@gmail.com,t
+13,Jennifer,Lame,0365080810,jennifer.lame@yahoo.com,f
