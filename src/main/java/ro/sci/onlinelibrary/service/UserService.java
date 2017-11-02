@@ -7,11 +7,11 @@ import java.util.List;
 /**
  * Created by iulia on 9/15/2017.
  */
-public interface UserService<T extends User> {
+public interface UserService {
 
-    List<T> findAll ();
+    List<User> getAll ();
 
-    List<T> findByField (String field);
+    List<User> findByField (String field);
 
     void add(User user);
 
@@ -19,8 +19,5 @@ public interface UserService<T extends User> {
 
     void update (User user);
 
-    T searchById(Integer bookId);
-
-    void setUserRepository(UserRepository userRepository);
-
+    User searchById(Integer bookId);
 }

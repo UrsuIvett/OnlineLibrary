@@ -16,5 +16,5 @@ public interface ReviewRepository extends Repository<Review> {
     List<Review> getAll(int bookId);
 
     @Insert("INSERT INTO review(id,comment,book_id) values(#{id},#{comment},#{bookId})")
-    void add (Review review);
+    void add(Review review);
 }

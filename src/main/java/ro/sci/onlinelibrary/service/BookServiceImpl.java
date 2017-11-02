@@ -12,21 +12,17 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- * Created by iulia on 9/15/2017.
- */
 @Service("bookService")
-public class BookServiceImpl implements BookService<Book> {
+public class BookServiceImpl implements BookService {
 
-    private static final Logger LOGGER = Logger.getLogger("Online library");
+    private static final Logger LOGGER = Logger.getLogger(BookServiceImpl.class.getName());
 
     @Autowired
     private BookRepository bookRepository;
 
-
+    @Override
     public List<Book> getAll() {
-        List<Book> books = this.bookRepository.getAll();
-        return books;
+        return bookRepository.getAll();
     }
 
     @Override
@@ -36,7 +32,7 @@ public class BookServiceImpl implements BookService<Book> {
     }
 
     @Override
-    public void add (Book book) {
+    public void add(Book book) {
         this.bookRepository.add(book);
     }
 
@@ -47,30 +43,11 @@ public class BookServiceImpl implements BookService<Book> {
 
     @Override
     public void update(Book book) {
-//        List<Book> books = bookRepository.getAll();
-//        boolean existingId=false;
-//        for (Book savedBook: books) {
-//            if (savedBook.getId()==book.getId()) {
-//                existingId=true;
-//            }
-//        }
-//        if (existingId=false) {
-//            throw new RuntimeException("exception at runtime"); }
-        this.bookRepository.update(book);
+        bookRepository.update(book);
     }
 
     @Override
     public Book searchById(int bookId) {
-        Book book = this.bookRepository.searchById(bookId);
-        return book;
-    }
-
-    @Override
-    public void setBookRepository(BookRepository bookRepository) {
-    }
-
-
-    public Repository<Book> getBookRepository() {
-        return bookRepository;
+        return this.bookRepository.searchById(bookId);
     }
 }

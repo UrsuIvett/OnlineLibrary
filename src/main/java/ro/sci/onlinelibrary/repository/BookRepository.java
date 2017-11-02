@@ -15,18 +15,19 @@ public interface BookRepository extends Repository<Book> {
     List<Book> getAll();
 
     @Insert("INSERT INTO books(title,author,publishinghouse,booktype,booklanguage,nrpages,isbn) values(#{title},#{author},#{publishingHouse},#{bookType},#{bookLanguage},#{nrPages},#{isbn})")
-    void add (Book book);
+    void add(Book book);
 
     @Delete("DELETE FROM books WHERE id=#{bookId}")
-    void delete (int bookId);
+    void delete(int bookId);
 
-    @Update("UPDATE books SET title=#{title}, author=#{author}, publishinghouse=#{publishingHouse}, booktype=#{bookType}, booklanguage=#{bookLanguage}, nrpages=#{nrPages}, isbn=#{isbn} WHERE id=#{bookId}")
-    void update (Book book);
+    @Update("UPDATE books SET title=#{title}, author=#{author}, publishinghouse=#{publishingHouse}, booktype=#{bookType}, booklanguage=#{bookLanguage}, nrpages=#{nrPages}, isbn=#{isbn} WHERE id=#{id}")
+    void update(Book book);
 
     @Select("SELECT * FROM books WHERE LOWER(author) LIKE #{field} or LOWER(title) LIKE #{field} or LOWER (publishingHouse) LIKE #{field}")
     List<Book> getByField(@Param("field") String field);
 
     @Select("SELECT * FROM books WHERE id=#{bookId}")
     Book searchById(int bookId);
+
 
 }

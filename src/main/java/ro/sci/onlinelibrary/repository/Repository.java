@@ -6,7 +6,10 @@ package ro.sci.onlinelibrary.repository;
 
 public interface Repository<T> {
         void add(T t);
+
         void delete(int id);
+
         void update(T t);
+
         T searchById(Integer id);
 }

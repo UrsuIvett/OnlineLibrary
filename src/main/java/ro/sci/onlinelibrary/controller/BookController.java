@@ -19,68 +19,66 @@ import java.util.List;
 @Controller
 public class BookController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("BookController");
+    private static final Logger LOGGER = LoggerFactory.getLogger(BookController.class.getName());
 
     @Autowired
     private BookService bookService;
-    @Autowired
-    private BookRepository bookRepository;
+
 
     //Show all books
     @RequestMapping(value = "/books", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView getBooks() {
-        List<Book> books = bookService.getAll();
-        return new ModelAndView("bookView", "books", books);
+    public ModelAndView getBooks(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
+        List<Book> books = bookService.findByField(search);
+        return new ModelAndView("books", "searchResult", books);
     }
 
-    //Search books from repository
-    @RequestMapping(value = "/books/search", method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView searchBooks(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
-        List books = bookService.findByField(search);
-        return new ModelAndView("searchView", "searchResult", books);
+    //Ask view book
+    @GetMapping(value = "/readBook/{id}")
+    public String bookView(Model model, @PathVariable(name = "id") int id) {
+        Book book = bookService.searchById(id);
+        model.addAttribute("book", book);
+        return "readBook";
     }
 
     //Ask submit new book
-    @GetMapping(value = "/newBook")
+    @GetMapping(value = "/addBook")
     public String bookForm(Model model) {
         model.addAttribute("book", new Book());
-        return "submit";
+        return "addBook";
     }
 
     //Submit new book
-    @PostMapping(value = "/newBook")
-    @ResponseBody
-    public String bookForm(@ModelAttribute Book book) {
-        bookRepository.add(book);
-        LOGGER.info("New book was added to Database, with following id: "+book.getId());
-        return "Book saved!";
+    @PostMapping(value = "/addBook")
+    public String bookForm(Model model, @ModelAttribute Book book) {
+        bookService.add(book);
+        model.addAttribute("message", "Book saved!");
+        model.addAttribute("searchResult", bookService.getAll());
+        return "books";
 
     }
 
     //Delete a book
-
-    @RequestMapping(value  = "/deleteBook/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String deleteBook(Book book) {
-        bookRepository.delete(book.getId());
-        LOGGER.info("New book was deleted from Database, with following id: "+book.getId());
-        return "Book deleted";
+    @RequestMapping(value = "/deleteBook/{id}", method = RequestMethod.GET)
+    public String deleteBook(Model model, @PathVariable(name = "id") int id) {
+        bookService.delete(id);
+        model.addAttribute("message", "Book deleted!");
+        model.addAttribute("searchResult", bookService.getAll());
+        return "books";
     }
-
 
     //Ask for update a book
     @GetMapping(value = "/updateBook/{id}")
-    public String updateBookForm(Model model) {
-        model.addAttribute("book", new Book());
+    public String updateBookForm(Model model, @PathVariable(name = "id") int id) {
+        Book book = bookService.searchById(id);
+        model.addAttribute("book", book);
         return "updateBook";
     }
 
     //Update a book
     @PostMapping(value = "/updateBook/{id}")
-    public String updateBookForm(@ModelAttribute Book book) {
-        Book updateBook = bookRepository.searchById(book.getId());
+    public String updateBookForm(Model model, @ModelAttribute Book book) {
+        Book updateBook = bookService.searchById(book.getId());
         updateBook.setTitle(book.getTitle());
         updateBook.setAuthor(book.getAuthor());
         updateBook.setPublishingHouse(book.getPublishingHouse());
@@ -88,30 +86,9 @@ public class BookController {
         updateBook.setBookLanguage(book.getBookLanguage());
         updateBook.setNrPages(book.getNrPages());
         updateBook.setIsbn(book.getIsbn());
-        bookRepository.update(updateBook);
-        LOGGER.info("A book was updated with following id: "+updateBook.getId());
-        return "Book updated!";
+        bookService.update(updateBook);
+        model.addAttribute("message", "Book updated!");
+        model.addAttribute("searchResult", bookService.getAll());
+        return "books";
     }
-
-//    //Ask for update a book
-//    @GetMapping(value = "/updateBook/{id}")
-//    public String updateBookForm(Model model) {
-//        model.addAttribute("book", new Book());
-//        return "updateBook";
-//    }
-//
-//    //Update a book
-//    @RequestMapping(value = "/updateBook/{id}", method = RequestMethod.POST)
-//    public String updateBookForm(@ModelAttribute Book book) {
-//        Book updateBook = bookService.searchById(book.getId());
-//        updateBook.setTitle(book.getTitle());
-//        updateBook.setAuthor(book.getAuthor());
-//        updateBook.setPublishingHouse(book.getPublishingHouse());
-//        updateBook.setBookType(book.getBookType());
-//        updateBook.setBookLanguage(book.getBookLanguage());
-//        updateBook.setNrPages(book.getNrPages());
-//        updateBook.setIsbn(book.getIsbn());
-//        bookRepository.update(updateBook);
-//        return "updateBook";
-//    }
 }

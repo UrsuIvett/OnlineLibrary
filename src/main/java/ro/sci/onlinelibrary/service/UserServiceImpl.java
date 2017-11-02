@@ -9,13 +9,13 @@ import java.util.List;
 
 
 @Service("userService")
-public class UserServiceImpl implements UserService<User> {
+public class UserServiceImpl implements UserService{
 
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    public List<User> findAll() {
+    public List<User> getAll() {
         return userRepository.getAll();
     }
 
@@ -37,21 +37,11 @@ public class UserServiceImpl implements UserService<User> {
 
     @Override
     public void update(User user) {
-        this.userRepository.update(user);
-
+        userRepository.update(user);
     }
 
     @Override
     public User searchById(Integer userId) {
-        User user = userRepository.searchById(userId);
-        return user;
-    }
-
-    @Override
-    public void setUserRepository(UserRepository userRepository) {
-    }
-
-    public UserRepository getUserRepository() {
-        return userRepository;
+        return this.userRepository.searchById(userId);
     }
 }
