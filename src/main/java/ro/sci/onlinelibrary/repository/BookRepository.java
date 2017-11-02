@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface BookRepository extends Repository<Book> {
 
-    @Select("SELECT * FROM books")
+    @Select("SELECT * FROM books order by id")
     List<Book> getAll();
 
     @Insert("INSERT INTO books(id,title,author,publishinghouse,booktype,booklanguage,nrpages,isbn) values(#{id},#{title},#{author},#{publishingHouse},#{bookType},#{bookLanguage},#{nrPages},#{isbn})")

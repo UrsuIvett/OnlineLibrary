@@ -1,5 +1,6 @@
 package ro.sci.onlinelibrary.repository;
 
+import ro.sci.onlinelibrary.model.user.Login;
 import ro.sci.onlinelibrary.model.user.User;
 
 /**
@@ -12,4 +13,5 @@ public interface Repository<T> {
         void delete(T t);
         void update(T t);
         T searchById(Integer id);
+        T validateUser(Login login);
 }

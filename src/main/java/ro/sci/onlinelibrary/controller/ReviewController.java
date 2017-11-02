@@ -1,6 +1,7 @@
 package ro.sci.onlinelibrary.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +15,7 @@ import java.util.List;
 /**
  * Created by iulia on 10/19/2017.
  */
+@Controller
 public class ReviewController {
     @Autowired
     private ReviewService reviewService;

@@ -27,66 +27,71 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserRepository userRepository;
-
+    //Search all users
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView getUsers() {
-        List<User> users = userService.findAll();
-        return new ModelAndView("userView", "users", users);
+    public ModelAndView getUsers(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
+        List<User> users = userService.findByField(search);
+        return new ModelAndView("users", "searchResult", users);
     }
 
-    //Search users from repository
-    @RequestMapping(value = "/users/search", method = RequestMethod.GET)
-    @ResponseBody
-    public ModelAndView searchUsers(@RequestParam(value = "searchField", required = false, defaultValue = "") String search) {
-        List users = userService.findByField(search);
-        return new ModelAndView("userSearchView", "searchResult", users);
+    //Ask view user
+    @GetMapping(value = "/readUser/{id}")
+    public String userView(Model model, @PathVariable(name = "id") int id) {
+        User user = userService.searchById(id);
+        model.addAttribute("user", user);
+        return "readUser";
     }
 
     //Ask submit new user
-    @GetMapping(value = "/newUser")
+    @GetMapping(value = "/addUser")
     public String userForm(Model model) {
         model.addAttribute("user", new User());
-        return "submitUser";
+        return "addUser";
     }
 
     //Submit new user
-    @PostMapping(value = "/newUser")
-    @ResponseBody
-    public String userForm(@ModelAttribute User user) {
-        LOGGER.log(Level.INFO, "Added a new user");
-        userRepository.add(user);
-        return "User saved!";
+    @PostMapping(value = "/addUser")
+    public String userForm(Model model, @ModelAttribute User user) {
+        userService.add(user);
+        model.addAttribute("message", "User saved!");
+        model.addAttribute("searchResult", userService.getAll());
+        return "users";
+
     }
 
-    //Delete a user
-
-    @RequestMapping(value  = "/deleteUser/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String deleteUser(User user) {
-        LOGGER.log(Level.INFO, "Deleting user");
-        userRepository.delete(user.getId());
-        return "User deleted";
+    //Delete an user
+    @RequestMapping(value = "/deleteUser/{id}", method = RequestMethod.GET)
+    public String deleteUser(Model model, @PathVariable(name = "id") int id) {
+        userService.delete(id);
+        model.addAttribute("message", "User deleted!");
+        model.addAttribute("searchResult", userService.getAll());
+        LOGGER.info("New user was deleted from Database, with following id: "+id);
+        return "users";
     }
 
-    //Ask for update a user
-    @GetMapping(value = "/updateUser/")
-    public String updateUserForm(Model model) {
-        model.addAttribute("user", new User());
+    //Ask for update an user
+    @GetMapping(value = "/updateUser/{id}")
+    public String updateUserForm(Model model, @PathVariable(name = "id") int id) {
+        User user = userService.searchById(id);
+        model.addAttribute("user", user);
         return "updateUser";
     }
 
-    //Update a user
-    @RequestMapping(value = "/userIsUpdated/", method = RequestMethod.POST)
-    public String updateUserForm(@ModelAttribute User user) {
+    //Update an user
+    @PostMapping(value = "/updateUser/{id}")
+    public String updateBookForm(Model model, @ModelAttribute User user) {
         User updateUser = userService.searchById(user.getId());
         updateUser.setFirstName(user.getFirstName());
         updateUser.setLastName(user.getLastName());
-        updateUser.setEmail(user.getEmail());
         updateUser.setPhone(user.getPhone());
-        userRepository.update(updateUser);
-        return "updateUser";
+        updateUser.setEmail(user.getEmail());
+        updateUser.setPaid(user.isPaid());
+        userService.update(updateUser);
+        model.addAttribute("message", "User updated!");
+        model.addAttribute("searchResult", userService.getAll());
+        LOGGER.info("New user was added to Database, with following email: "+user.getEmail());
+        return "users";
     }
+
 }
