@@ -27,7 +27,6 @@
             <td th:text="${user.phone}">phone</td>
             <td th:text="${user.email}">email</td>
             <td th:text="${user.paid}">paid</td>
-            <td><a th:href="@{/readUser/{id}(id=${user.id})}">View</a></td>
             <td><a th:href="@{/updateUser/{id}(id=${user.id})}">Update</a></td>
             <td><a th:href="@{/deleteUser/{id}(id=${user.id})}">Delete</a></td>
         </tr>
