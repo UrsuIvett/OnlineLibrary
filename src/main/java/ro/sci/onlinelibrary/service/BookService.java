@@ -9,11 +9,11 @@ import java.util.List;
 /**
  * Created by iulia on 9/15/2017.
  */
-public interface BookService<T extends Book> {
+public interface BookService {
 
-    List<T> findAll ();
+    List<Book> getAll ();
 
-    List<T> findByField (String field);
+    List<Book> findByField (String field);
 
     void add(Book book);
 
@@ -21,7 +21,6 @@ public interface BookService<T extends Book> {
 
     void update (Book book);
 
-    T searchById(Integer bookId);
+    Book searchById(int bookId);
 
-    void setBookRepository(BookRepository bookRepository);
 }

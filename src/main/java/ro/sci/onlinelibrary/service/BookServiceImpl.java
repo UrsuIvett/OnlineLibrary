@@ -15,7 +15,7 @@ import java.util.logging.Logger;
  * Created by iulia on 9/15/2017.
  */
 @Service("bookService")
-public class BookServiceImpl implements BookService<Book> {
+public class BookServiceImpl implements BookService {
 
     private static final Logger LOGGER = Logger.getLogger("Online library");
 
@@ -23,8 +23,9 @@ public class BookServiceImpl implements BookService<Book> {
     private BookRepository bookRepository;
 
 
-    public List<Book> findAll() {
-        return bookRepository.getAll();
+    public List<Book> getAll(){
+        List<Book> books = this.bookRepository.getAll();
+        return books;
     }
 
     @Override
@@ -44,30 +45,13 @@ public class BookServiceImpl implements BookService<Book> {
 
     @Override
     public void update(Book book) {
-        List<Book> books = bookRepository.getAll();
-        boolean existingId=false;
-        for (Book savedBook: books) {
-            if (savedBook.getId()==book.getId()) {
-                existingId=true;
-            }
-        }
-        if (existingId=false) {
-            throw new RuntimeException("exception at runtime"); }
-        this.bookRepository.update(book);
+        bookRepository.update(book);
     }
 
     @Override
-    public Book searchById(Integer bookId) {
-        Book book = this.bookRepository.searchById(bookId);
-        return book;
-    }
-
-    @Override
-    public void setBookRepository(BookRepository bookRepository) {
+    public Book searchById(int bookId) {
+        return this.bookRepository.searchById(bookId);
     }
 
 
-    public Repository<Book> getBookRepository() {
-        return bookRepository;
-    }
 }

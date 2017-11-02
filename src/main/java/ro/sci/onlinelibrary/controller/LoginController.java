@@ -40,6 +40,27 @@ public class LoginController {
             return "Login successful";
         }
 
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public ModelAndView showLogin() {
+//        ModelAndView mav = new ModelAndView("login");
+//        mav.addObject("login", new Login());
+//        return mav;
+//    }
+//
+//    @RequestMapping(value = "/loginProcess", method = RequestMethod.POST)
+//    public ModelAndView loginProcess(@ModelAttribute("login") Login login) {
+//        ModelAndView mav = null;
+//        User user = userService.validateUser(login);
+//        if (user.getPassword()!=null && user.getUsername()!=null) {
+//            mav = new ModelAndView("welcomeUser");
+//            mav.addObject("user", user);
+//        } else {
+//            mav = new ModelAndView("login");
+//            mav.addObject("message", "Username or Password is wrong!!");
+//        }
+//        return mav;
+//    }
+
 }
 
 

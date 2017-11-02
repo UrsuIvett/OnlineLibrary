@@ -12,14 +12,8 @@ import ro.sci.onlinelibrary.service.BookService;
  */
 @Controller
 public class WelcomeController {
-
-    @Autowired
-    private BookService bookService;
-    @Autowired
-    private BookRepository bookRepository;
-
-    @GetMapping(value = "/home")
-    public String bookForm(Model model) {
-        return "home";
+    @GetMapping(value = "/")
+    public String homeForm() {
+        return "index";
     }
 }

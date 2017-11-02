@@ -1,9 +1,12 @@
 package ro.sci.onlinelibrary.model.book;
 
+import groovy.transform.ASTTest;
+
 /**
  * Created by Ivett on 14-Sep-17.
  */
 public class Book {
+
     private int id;
     private String title;
     private String author;

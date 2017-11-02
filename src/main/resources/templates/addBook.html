@@ -1,14 +1,13 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Book Form Submission</title>
+    <title>Submitting a book</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<body>
-<h1>Online library</h1>
+<body bgcolor="#ccff99">
+<h1>ONLINE LIBRARY</h1>
 <h2>SUBMIT NEW BOOK FORM</h2>
-<form th:object="${book}" th:action="@{/newBook}" method="post">
-    <p>Book id: <input type="text" th:field="*{id}" /></p>
+<form th:object="${book}" th:action="@{/addBook}" method="post">
     <p>Book title: <input type="text" th:field="*{title}" /></p>
     <p>Book author: <input type="text" th:field="*{author}" /></p>
     <p>Publishing house: <input type="text" th:field="*{publishingHouse}" /></p>

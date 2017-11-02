@@ -4,9 +4,9 @@
     <title>Creating a new account</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
-<body>
+<body bgcolor="#ccff99">
 <h1>Online Library</h1>
-<h2>Create a new account form</h2>
+<h2>Create a new account</h2>
 <form th:object="${user}" th:action="@{/register}" method="post">
     <p>First Name: <input type="text" th:field="*{firstName}" /></p>
     <p>Last Name: <input type="text" th:field="*{lastName}" /></p>

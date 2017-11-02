@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+    <title>Welcome</title>
+</head>
+<body bgcolor="#E6E6FA">
+<h2>WELCOME TO THE BOOKS MANAGEMENT SECTION!</h2>
+<h3>Books List</h3>
+<span th:text="${message}"></span>
+<form th:object="${book}" th:action="@{/books}" method="get">
+    <input type="text" name="searchField" id="searchField" th:value="${searchField}"/>
+    <input type="submit" value="Search"/>
+    <table class="table table-striped">
+        <tr>
+            <th>Author</th>
+            <th>Title</th>
+            <th>Publishing House</th>
+            <th>Category</th>
+            <th>View</th>
+            <th>Update</th>
+            <th>Delete</th>
+        </tr>
+        <tr th:each="book: ${searchResult}">
+            <td th:text="${book.author}">author</td>
+            <td th:text="${book.title}">title</td>
+            <td th:text="${book.publishingHouse}">publishingHouse</td>
+            <td th:text="${book.bookType}">bookType</td>
+            <td><a th:href="@{/readBook/{id}(id=${book.id})}">View</a></td>
+            <td><a th:href="@{/updateBook/{id}(id=${book.id})}">Update</a></td>
+            <td><a th:href="@{/deleteBook/{id}(id=${book.id})}">Delete</a></td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{/addBook}">Add New Book</a>
+</body>
+</html>
