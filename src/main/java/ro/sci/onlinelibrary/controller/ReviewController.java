@@ -1,5 +1,7 @@
 package ro.sci.onlinelibrary.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +26,7 @@ public class ReviewController {
     @Autowired
     private ReviewRepository reviewRepository;
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ReviewController.class.getName());
 
     //Ask submit new comment
     @GetMapping(value = "books/newReview")
@@ -44,6 +47,7 @@ public class ReviewController {
     @ResponseBody
     public ModelAndView getReviews(Book book) {
         List<Review> reviews = reviewService.findAll(book.getId());
+        LOGGER.info("new comment was added");
         return new ModelAndView("reviewView", "reviews", reviews);
     }
 

@@ -1,16 +1,13 @@
 package ro.sci.onlinelibrary.repository;
 
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import ro.sci.onlinelibrary.model.book.Book;
 import ro.sci.onlinelibrary.model.user.User;
 
 import java.util.List;
 
 /**
- * Created by iulia on 9/15/2017.
+ * Created by Ivett on 9/15/2017.
  */
 public interface UserRepository extends Repository<User> {
 
@@ -23,8 +20,12 @@ public interface UserRepository extends Repository<User> {
     @Insert("INSERT INTO users(firstname,lastname,phone,email,paid) values(#{firstName},#{lastName},#{phone},#{email},#{paid})")
     void add (User user);
 
+    @Update("UPDATE users SET firstname=#{firstName}, lastname=#{lastName}, phone=#{phone}, email=#{email}, paid=#{paid} WHERE id=#{id}")
+    void update (User user);
+
     @Delete("DELETE FROM users WHERE id=#{userId}")
     void delete (int userId);
 
-    void update (User user);
+    @Select("SELECT * FROM users WHERE id=#{userId}")
+    User searchById(int userId);
 }

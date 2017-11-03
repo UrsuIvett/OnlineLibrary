@@ -72,6 +72,6 @@ public class ExceptionHandlerAdvice {
         LOGGER.log(Level.WARNING, stackTrace);
 
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                .body("Runtime Exception: Please check SQL Query for accessing database information!  ");
+                .body("Runtime Exception: Please check SQL Query for accessing database information! (ISBN for books, email address for users must be unique!)");
     }
 }

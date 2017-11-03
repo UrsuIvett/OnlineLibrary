@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Service("reviewService")
-public class ReviewServiceImpl implements ReviewService<Review> {
+public class ReviewServiceImpl implements ReviewService{
 
     @Autowired
     private ReviewRepository reviewRepository;

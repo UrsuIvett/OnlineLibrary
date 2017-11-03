@@ -5,7 +5,7 @@ import ro.sci.onlinelibrary.repository.UserRepository;
 import java.util.List;
 
 /**
- * Created by iulia on 9/15/2017.
+ * Created by Ivett on 9/15/2017.
  */
 public interface UserService {
 
@@ -19,5 +19,5 @@ public interface UserService {
 
     void update (User user);
 
-    User searchById(Integer bookId);
+    User searchById(int userId);
 }

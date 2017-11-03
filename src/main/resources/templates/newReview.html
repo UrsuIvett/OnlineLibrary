@@ -8,7 +8,7 @@
 <h1>ONLINE LIBRARY</h1>
 <h2>SUBMIT A NEW COMMENT FORM</h2>
 <form th:object="${review}" th:action="@{/books/newReview}" method="post">
-    <p>Review id: <input type="text" th:field="*{id}" /></p>
+
     <p>Comment: <input type="text" th:field="*{comment}" /></p>
     <p>Book id: <input type="text" th:field="*{bookId}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>

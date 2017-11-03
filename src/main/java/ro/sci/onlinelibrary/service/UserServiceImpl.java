@@ -37,11 +37,11 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void update(User user) {
-        userRepository.update(user);
+        this.userRepository.update(user);
     }
 
     @Override
-    public User searchById(Integer userId) {
+    public User searchById(int userId) {
         return this.userRepository.searchById(userId);
     }
 }

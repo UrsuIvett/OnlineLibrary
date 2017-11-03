@@ -17,6 +17,9 @@
             <th>Title</th>
             <th>Publishing House</th>
             <th>Category</th>
+            <th>Language</th>
+            <th>Nr of pages</th>
+            <th>Isbn</th>
             <th>View</th>
             <th>Update</th>
             <th>Delete</th>
@@ -26,6 +29,9 @@
             <td th:text="${book.title}">title</td>
             <td th:text="${book.publishingHouse}">publishingHouse</td>
             <td th:text="${book.bookType}">bookType</td>
+            <td th:text="${book.bookLanguage}">bookLanguage</td>
+            <td th:text="${book.nrPages}">nrPages</td>
+            <td th:text="${book.isbn}">isbn</td>
             <td><a th:href="@{/readBook/{id}(id=${book.id})}">View</a></td>
             <td><a th:href="@{/updateBook/{id}(id=${book.id})}">Update</a></td>
             <td><a th:href="@{/deleteBook/{id}(id=${book.id})}">Delete</a></td>

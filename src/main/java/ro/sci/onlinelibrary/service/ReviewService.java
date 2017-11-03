@@ -9,9 +9,9 @@ import java.util.List;
  */
 
 
-public interface ReviewService<T extends Review> {
+public interface ReviewService {
 
-    List<T> findAll(int id);
+    List<Review> findAll(int id);
 
     void add (Review review);
 }

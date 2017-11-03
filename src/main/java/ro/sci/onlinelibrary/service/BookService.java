@@ -4,7 +4,7 @@ import ro.sci.onlinelibrary.model.book.Book;
 import java.util.List;
 
 /**
- * Created by iulia on 9/15/2017.
+ * Created by Ivett on 9/15/2017.
  */
 public interface BookService {
 

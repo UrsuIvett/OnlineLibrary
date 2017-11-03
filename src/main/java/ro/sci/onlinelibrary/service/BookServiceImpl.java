@@ -43,7 +43,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void update(Book book) {
-        bookRepository.update(book);
+        this.bookRepository.update(book);
     }
 
     @Override

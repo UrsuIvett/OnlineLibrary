@@ -3,7 +3,7 @@ package ro.sci.onlinelibrary.model.user;
 import javax.persistence.Entity;
 
 /**
- * Created by iulia on 9/15/2017.
+ * Created by Ivett on 9/15/2017.
  */
 @Entity
 public class User {

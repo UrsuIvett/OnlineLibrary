@@ -17,9 +17,10 @@
             <th>Last Name</th>
             <th>Email</th>
             <th>Phone</th>
-            <th>View</th>
+            <th>Paid</th>
             <th>Update</th>
             <th>Delete</th>
+            <th>Login</th>
         </tr>
         <tr th:each="user: ${searchResult}">
             <td th:text="${user.firstName}">firstName</td>
@@ -29,6 +30,7 @@
             <td th:text="${user.paid}">paid</td>
             <td><a th:href="@{/updateUser/{id}(id=${user.id})}">Update</a></td>
             <td><a th:href="@{/deleteUser/{id}(id=${user.id})}">Delete</a></td>
+            <td><a th:href="@{/login}">Login</a></td>
         </tr>
     </table>
 </form>

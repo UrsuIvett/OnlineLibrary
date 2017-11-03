@@ -15,6 +15,6 @@ public interface ReviewRepository extends Repository<Review> {
     @Select("SELECT * FROM review where book_id=#{bookId}")
     List<Review> getAll(int bookId);
 
-    @Insert("INSERT INTO review(id,comment,book_id) values(#{id},#{comment},#{bookId})")
+    @Insert("INSERT INTO review(comment,book_id) values(#{comment},#{bookId})")
     void add(Review review);
 }

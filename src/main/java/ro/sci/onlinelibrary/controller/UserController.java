@@ -21,7 +21,7 @@ import java.util.List;
 @Controller
 public class UserController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger("UserController");
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class.getName());
 
     @Autowired
     private UserService userService;
@@ -79,7 +79,7 @@ public class UserController {
 
     //Update an user
     @PostMapping(value = "/updateUser/{id}")
-    public String updateBookForm(Model model, @ModelAttribute User user) {
+    public String updateUserForm(Model model, @ModelAttribute User user) {
         User updateUser = userService.searchById(user.getId());
         updateUser.setFirstName(user.getFirstName());
         updateUser.setLastName(user.getLastName());
@@ -89,7 +89,7 @@ public class UserController {
         userService.update(updateUser);
         model.addAttribute("message", "User updated!");
         model.addAttribute("searchResult", userService.getAll());
-        LOGGER.info("New user was added to Database, with following email: "+user.getEmail());
+        LOGGER.info("New user was added to Database, with following email: "+updateUser.getEmail());
         return "users";
     }
 

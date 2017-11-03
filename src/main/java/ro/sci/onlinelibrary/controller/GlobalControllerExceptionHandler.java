@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by iulia on 10/7/2017.
+ * Created by Ivett on 10/7/2017.
  */
 public class GlobalControllerExceptionHandler {
 //    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)  // 409
